@@ -67,3 +67,9 @@ x, 删除的元素是y， 后选元素肯定是在x, y里面选。（为什么�
 如果y < x 且 counter[y] ==0,  选 y； 否则选 x
 这样复杂度就将为 O(k) 了
 
+ps: 在下来在hust
+acm群里面讨论的时候，发现大家统计个数的时候没有使用数组，直接用一个hash
+table: unordered_map(#include <tr1/unordered_map>), gcc 4.3 直接支持。
+参考：http://blog.chinaunix.net/uid-20384806-id-3055333.html，性能比hash
+map要好，可以研究一下实现。
+
