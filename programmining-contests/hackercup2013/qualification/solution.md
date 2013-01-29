@@ -31,9 +31,9 @@ Problem B: Balanced Smileys
  动态规划。 
  最主要的变换规则是： c =  a + b; c = (a);
  状态记录 status[i][j]
- 标识起点为i，长度为j的字符串是否满足规则；则两条规则对于状态转移
- status[i][j] |= str[i] = ( & status[i+1][j-2] & str[i+j-1] = )
- status[i][j] |= status[i][k] & status[i + k][ j - k];  0 < k < j
+ 标识起点为i，长度为j的字符串是否满足规则；则两条规则对应状态转移为：
+ - status[i][j] |= str[i] = ( & status[i+1][j-2] & str[i+j-1] = )
+ - status[i][j] |= status[i][k] & status[i + k][ j - k];  0 < k < j
 
  Problem C: Find the Min
 --------------------------
