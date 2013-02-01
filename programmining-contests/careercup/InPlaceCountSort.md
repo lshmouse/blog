@@ -34,9 +34,7 @@ The answer is In-Place Count Sort.
 http://en.wikipedia.org/wiki/In-Place_Count_Sort
 But the standard algorithm do not support duplicate numbers in the array. we
 improve the algorithm a bit.
-
 <pre><code>
-
 void inPlaceCounterSort(int* array, uint32_t size) {
   for (uint32_t i = 0; i &lt; size; i++) {
     if (array[i] &lt;= 0) continue;
