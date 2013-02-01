@@ -3,9 +3,7 @@ In-Place Count Sort
 
 Problem
 -----------------
-
-http://www.careercup.com/question?id=15303665&utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+Careercup+%28CareerCup%29&utm_content=Google+Reader
-
+From [careercup](http://www.careercup.com/question?id=15303665&utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+Careercup+%28CareerCup%29&utm_content=Google+Reader)
 You are given an unsorted integer array of size N. This array contains integer
 from range 0 - N (not necessarily distinct and same integer can appear multiple 
 time in an array).
@@ -29,9 +27,8 @@ Solution
 -------------------
 To decrease the space complexity, we need convert rhe unsorted integer array to 
 counter array in-place in O(n) time complexity.
-The answer is In-Place Count Sort.
+The answer is [In-Place Count Sort](http://en.wikipedia.org/wiki/In-Place_Count_Sort)
 
-http://en.wikipedia.org/wiki/In-Place_Count_Sort
 But the standard algorithm do not support duplicate numbers in the array. we
 improve the algorithm a bit.
 <pre><code>
