@@ -17,3 +17,8 @@ twiter murder
 ===============
 参考：https://github.com/lg/murder
 Large scale server deploys using BitTorrent and the BitTornado library 
+
+Semantic Versioning
+==============
+参考：http://semver.org/
+

@@ -2,6 +2,8 @@ The qualification of the facebook hackercup 2013
 ================================================
 
 https://www.facebook.com/hackercup/problems.php?round=185564241586420
+And Solution:
+http://www.facebook.com/notes/facebook-hacker-cup/qualification-round-solutions/598486173500621 
 
 资格赛，题目不是很难。
 - 第一题就是一个简单的排序问题，
