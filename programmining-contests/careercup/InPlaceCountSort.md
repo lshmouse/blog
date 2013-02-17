@@ -53,3 +53,9 @@ void inPlaceCounterSort(int* array, uint32_t size) {
 	}
 }
 </code></pre>
+
+
+Extras
+-------------------
+上述操作是否可逆，即是否可以从一个counter 数组还原输入数组
+
