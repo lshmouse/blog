@@ -7,7 +7,6 @@ Hadoop Mapreduce支持多种输出格式：Text, SequenceFile, HFile等， 本�
 - 典型的文件格式Text, SequenceFile, HFile等，是怎么切分的，来保证记录的完整性
 - 怎么实现自定义的文件格式
 
-
 Hadoop 支持的文件格式
 -----------------------
 

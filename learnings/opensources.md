@@ -1,9 +1,7 @@
 linkedin glu 
 ==============
 参考：http://linkedin.github.com/
-
 glu: glu is a deployment automation platform
-
 自动部署平台，准备适用一下
 
 phabricator
@@ -20,5 +18,7 @@ Large scale server deploys using BitTorrent and the BitTornado library
 
 Semantic Versioning
 ==============
+说明软件开发过程中通用的版本规范
 参考：http://semver.org/
+
 
