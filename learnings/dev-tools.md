@@ -17,3 +17,8 @@ CSS Framework
 ---------------------------------------------
 Bootstrap see: http://twitter.github.com/bootstrap/
 
+rpc通讯序列化与反序列化
+-----------------------------------------------
+google protobuf
+see: http://code.google.com/p/protobuf/
+
