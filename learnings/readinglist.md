@@ -6,7 +6,6 @@ Weibo SNS NewsFeed
 See:
 http://www.cnblogs.com/sunli/archive/2010/08/24/twitter_feeds_push_pull.html
 
-
 分布式编译
 ----------------------
 ccache + distcc
@@ -52,3 +51,7 @@ http://abloz.com/hbase/book.html
 -------------------------
 http://www.programmer.com.cn/15552/
 
+=======
+PKU distributed system
+---------------------------------
+http://net.pku.edu.cn/~course/cs501/2012/

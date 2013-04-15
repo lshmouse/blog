@@ -67,3 +67,9 @@ http://blog.bingo929.com/dojo-javascript-style-guide.html
 TODO
 --------------------------
 公司邮箱，内部沟通工具， 服务器托管, ...
+=======
+rpc通讯序列化与反序列化
+-----------------------------------------------
+google protobuf
+see: http://code.google.com/p/protobuf/
+
