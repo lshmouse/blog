@@ -6,6 +6,10 @@ Weibo SNS NewsFeed
 See:
 http://www.cnblogs.com/sunli/archive/2010/08/24/twitter_feeds_push_pull.html
 
+Best Paper
+----------------------
+http://jeffhuang.com/best_paper_awards.html#osdi
+
 分布式编译
 ----------------------
 ccache + distcc
@@ -65,3 +69,15 @@ Merkle Tree
 ---------------------------------
 http://ccl.pku.edu.cn/ALCourse/Compiling/
 
+=======
+Learning Python 
+---------------------------------
+http://docs.python.org/2/library/index.html
+
+bigtable
+----------------------------------
+http://en.wikipedia.org/wiki/BigTable#Other_Implementations
+
+easyhadoop
+-------------
+http://bbs.easyhadoop.com/
