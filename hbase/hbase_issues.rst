@@ -14,4 +14,10 @@ Hbase Compaction
 -----------------------
 Tier based compaction: https://issues.apache.org/jira/browse/HBASE-6371
 upport level compaction: https://issues.apache.org/jira/browse/HBASE-7519
+Support stripe compaction: https://issues.apache.org/jira/browse/HBASE-7667
+
+
+Hlog split
+---------------------------
+https://issues.apache.org/jira/browse/HBASE-7006
 
