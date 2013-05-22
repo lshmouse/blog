@@ -21,3 +21,8 @@ Hlog split
 ---------------------------
 https://issues.apache.org/jira/browse/HBASE-7006
 
+
+Namespace
+---------------------------
+https://issues.apache.org/jira/browse/HBASE-8015
+
