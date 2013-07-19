@@ -81,3 +81,8 @@ http://en.wikipedia.org/wiki/BigTable#Other_Implementations
 easyhadoop
 -------------
 http://bbs.easyhadoop.com/
+
+git
+------------
+http://www.xdarui.com/index.php/archives/150
+
