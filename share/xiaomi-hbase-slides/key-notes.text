@@ -1,0 +1,149 @@
+
+slide1:
+HBase是google bigtable系统的开源实现，定位是一个分布式，可扩展的，一致性的，结构化和半结构化的数据存储。
+抽象一点理解，本质上是一个稀疏的，分布式的，多维有序表。这个多维有序表是：
+行key -》 列簇 -》 列 -》 时间戳， 最后到实际的value.
+
+
+slide2:
+HBase基本数据模型包含：表/行/列簇/列/时间戳，或者叫做版本。
+表是一类数据集合，一个表下面包含多个行，这些行是安装行key有序。
+一个row数据可以分别存储在多个列簇下，列簇需要在见表的时候后预先定义好。
+列簇下面包含多个列，这个可以动态添加的，理论上是无限的。对于每个列，数据根据时间戳可以存储多个版本的数据。
+
+HBase支持基本的插入/删除/查询 API。对于修改操作，HBase保证单行的原子性。
+另外还支持扫描操作，通过指定行key的范围和条件，将对应数据查询出来。
+scan操作可以用于大规模的离线数据分析，可以用于在线业务批量数据拉去。
+
+slide3:
+
+HBase基本架构如图， 基本包行HMaster, HRegionServer.
+HMaster主要服务控制流，如表的创建/删除等操作，HRegionServer之间均衡，
+HRegionServer的容错等等。
+HRegionServer主要负责数据，即数据读写操作。
+
+HBase依赖hdfs，zookeeper HBase将所有的数据表的信息, hfile,
+	hlog都存储在hdfs上。还有少量消息存储在zookeeper。hbase依赖zk实现HMaster的主备抢锁，
+实现HRegionServer的心态机制，检测HRegionServer是否down机，以及ROOT表的路由。
+
+slide4:
+下面是一个表的逻辑试图，一个表的数据通过range partition分为多个region，
+这些region被多个HRegionServer
+服务，但是同一个时间一个region只能被一个RegionServer服务。一个HRegionServer可以服务不同表的多个region。
+
+slide5:
+选择Hbase主要看重一些几点：第一，水平扩展性能好。使用mysql的同学都知道，为了应对可以可能数据增长，见表的时候先给表分库/分表，一般采用用户hash的办法。
+实际操作过程需要很多运维操作。Hbase有天然扩展性的优势，当一个region过大时候，可以自动分为两个region。
+当集群容量/吞吐量不够时候，通过添加机器，region会在regionserver重新均衡一次，可以实现动态的水平扩展。
+
+写性能。基于LSM-Tree， 一次写只有一次磁盘写操作, HBase比较适合写多读少的场景。put操作平均时间是3-4ms, 由于gc99%
+percentile lantency在百ms.
+
+第三， schema设计灵活。刚才我们说道hbase可以抽象成一个多维有序表，多维包含row,
+	column familu, column, timestamp。 实际业务数据可以灵活的映射到这个四个维度上
+
+第四点，HBase社区和整个hadoop生态系统。与计算mapreduce，hive整合在一起，方便数据处理和分析。
+
+
+slide6:
+小米业务从去年年底开始接入HBase，已经接入业务包括米聊消息全存储，
+MiCloud短信/通话记录同步等，小米push服务，关系推荐，这些业务偏现在系统。
+还有一些离线分析统计业务。
+
+实际部署stack如图， Hbase部署在hdfs,zookeeper之上， AppServer同过java
+客户端直接访问提hbase。简单的统计可以直接使用hive完成，复杂的分析可以通过自己写mapreduce作业来完成。
+
+
+slide7:
+典型集群包含两类节点控制节点和数据节点。控制节点主要部署zookooper,hdfs
+namenode,HMaster. 数据节点主要部署hdfs datanode， HBase regionserver.
+两个节点配置主要区别在与磁盘上，
+控制节点磁盘容量要求不高，但稳定性重要，因此做了RAID10.
+
+机器到位之后，第一步，使用puppet完成机器配置初始化，
+主要是linux参数优化，如文件句柄数， 基本服务ntp, kerberos,
+	以及一些contabs，硬件/磁盘检测等，日志定期清理等。
+还有安装基本软件如jdk, Supervisor类似一个watchdog.
+Supervisor会服务以后部署在这个机器上所有进程。
+
+slide8:
+完成机器初始化后首先部署zookeeper， 一般部署3/5个。
+
+slide9：
+然后部署hdfs. 使用hadoop 2.0里面QJM实现namenode的高可用性。
+现在控制节点上部署，journal node. journal nodes是主被naemnode之间共享存储。
+namenode上操作日志必须要写到journal node上W分才算成功，
+备namenode从journode上来去操作日志，需要读到R份才算成功。 W + R > N N
+等于journal node节点的个数。
+
+slide10
+最后部署HBase HMaster/HRegionServer，在控制节点上部署主备连个Hmaster。
+整体上看整体系统没有单点故障。
+
+slide11:
+以上每个系统的部署都是通过命令行工具完成。这个脚本通过调用每个机器上supervisor
+远程rpc，来部署各个进程。
+
+基本命令...
+
+
+slide11：
+通过收集汇总每个集群的metrics信息，将集群的状态状态展示一个dashboard上，从dashboard上很清晰看到各个集群的状态。
+
+如对于hbase可以看到当前集群表列表，总qps以及每个表的qps， 数据量等,以及qps在每个region上的分布等
+
+slide12:
+Dashboorad展示是当前状态。历史性能指标存储基于OpenTsdb,
+底层存储其实也是一个hbase集群。性能指标展示最开始我们使用的ganglia，但是ganglia没有层级关系，没有分类展示和对比。
+在opentsdb存储历史数据，然后自己开发展示部分，做到直观方便，能很快发现问题。
+
+slide13:
+小米整个自动化部署监控系统在Minos。我们内部使用版本和github上版本是一样的，欢迎大家使用。
+
+slide14：
+下面介绍一些我们实际使用hbase过程中一些最佳实践。
+在原生的hbase client基础上分装了XiaoMI Hbase
+Client.主要是保证线程安全，第二自动添加客户端的metrics，方便和公司系统整合。
+支持跨表/跨集群访问，Xaiomi Hbase client
+能够动态加载从zookeeper配置，方便业务更新。
+
+slide15:
+对于主要的用户数据，提高master-master跨机房备份。
+用户在一个机房的数据会自动备份另一个机房。 HBase支持集群级别的replication，
+这样不够灵活，实际一个集群有些表需要备份，有些表不需要备份。修改hbase代码支持表和列簇级别的replication。
+添加replication时候可以指定表或者表的列簇名。
+
+对已经有数据的表添加replication，先要在add_peer后， 新数据自动推送过去。通过CopyTable
+mapreduce工具将对应表的数据copy过去
+
+对主被集群上表的，通过地方运行VerfyReplication定期验证表数据是否一致。
+
+slide15:
+在分装的xiaomi hbase client基础上容易显示集群自动切换， 每个AppServer上的hbase
+client会watch在zookooper上对应的配置节点上，当修改zk上集群配置时候， hbase
+client检测变化，删除旧的htable,
+	构造显得htable。所有的读写操作就会迁移新的集群上。
+
+slide16：
+平滑升级，
+安全；每个集群zk， hdfs， hbase都开始kerberos认证
+
+slide17:
+Reverse Scan
+
+slide18:
+
+slide20
+HBase修改反馈给社区。
+很常见一个问题，我的修改可能比较和自己业务绑定比较紧，不便提交回去。
+建议适当将问题抽象为一类问题，提取共性。第二个，通过配置将逻辑分离。
+
+紧跟社区的最新进展,
+HBase非常成熟的社区，开发进度也很快，只有紧跟社区最新进展，才能更快成长，更好的服务公司业务需求。
+
+积极参与社区设计和讨论。
+
+和tedyu, stack 社区交流，参与社区项目不只是休休bug，提交一些patch。
+更重要是在一些大的特性设计早期，参与讨论，寻找漏洞，提出方案。
+越早发现问题，越容易改，越到后来可能就积重难返了，
+
