@@ -86,3 +86,12 @@ git
 ------------
 http://www.xdarui.com/index.php/archives/150
 
+
+blog
+-----------
+http://labs.chinamobile.com/mblog/225_53601
+
+
+---------
+http://ocw.mit.edu/courses/
+
