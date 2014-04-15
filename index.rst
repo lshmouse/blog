@@ -6,12 +6,25 @@
 Welcome to Shaohui Liu's Blog's documentation!
 ==============================================
 
+工作
+-------------------
 Contents:
 
 .. toctree::
    :maxdepth: 1
    
    distributed-system-papers
+
+生活
+--------------------
+
+.. toctree::
+   :maxdepth: 1
+
+联系方式
+-------------------
+Email: lshmouse@gmail.com 
+Github: https://github.com/lshmouse/
 
 Indices and tables
 ==================
