@@ -8,12 +8,11 @@ Welcome to Shaohui Liu's Blog's documentation!
 
 工作
 -------------------
-Contents:
-
 .. toctree::
    :maxdepth: 1
    
    distributed-system-papers
+   hbase/hbase
 
 生活
 --------------------
@@ -23,8 +22,9 @@ Contents:
 
 联系方式
 -------------------
-Email: lshmouse@gmail.com 
-Github: https://github.com/lshmouse/
+* Email: lshmouse@gmail.com 
+* Github: https://github.com/lshmouse/
+* Bitbucket: https://bitbucket.org/lshmouse
 
 Indices and tables
 ==================
@@ -32,4 +32,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
