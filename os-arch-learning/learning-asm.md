@@ -13,5 +13,7 @@
 
 
 ##参考资料
-*http://docs.cs.up.ac.za/programming/asm/derick_tut/
+*http://en.wikibooks.org/wiki/X86_Assembly
+
+ *http://docs.cs.up.ac.za/programming/asm/derick_tut/
 *http://www.ibm.com/developerworks/cn/linux/l-assembly/

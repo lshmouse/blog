@@ -95,3 +95,7 @@ http://labs.chinamobile.com/mblog/225_53601
 ---------
 http://ocw.mit.edu/courses/
 
+hadoop-platform-as-a-service
+
+http://www.slideshare.net/krishflix/genie-hadoop-platform-as-a-service-at-netflix
+
