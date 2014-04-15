@@ -10,8 +10,8 @@ Contents:
 
 .. toctree::
    :maxdepth: 1
-
-
+   
+   distributed-system-papers
 
 Indices and tables
 ==================
