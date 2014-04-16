@@ -15,9 +15,10 @@ Welcome to Shaohui Liu's Blog
 
    work/distributed-system/index
    work/hbase/index
-   work/tool-chains
    work/learnings/index
-
+   work/tool-chains
+   work/links
+   
 生活
 --------------------
 
@@ -32,9 +33,9 @@ Welcome to Shaohui Liu's Blog
 * Github: https://github.com/lshmouse/
 * Bitbucket: https://bitbucket.org/lshmouse
 
-Indices and tables
-==================
+.. Indices and tables
+.. ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
