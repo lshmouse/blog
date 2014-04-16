@@ -1,0 +1,9 @@
++-------------------------+
+| layout: post            |
++-------------------------+
+| category : toolchains   |
++-------------------------+
+| tags : [git]            |
++-------------------------+
+
+基本教程 http://rogerdudler.github.com/git-guide/
