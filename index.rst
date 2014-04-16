@@ -1,4 +1,4 @@
-.. Shaohui Liu's Blog documentation master file, created by
+.. Shaohui Liu's Blog file, created by
    sphinx-quickstart on Tue Apr 15 20:14:02 2014.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -10,15 +10,21 @@ Welcome to Shaohui Liu's Blog
 -------------------
 .. toctree::
    :maxdepth: 1
-   
-   work/distributed-system-papers
-   work/hbase/hbase
+   :glob:
+   :numbered:
+
+   work/distributed-system/index
+   work/hbase/index
+   work/tool-chains
+   work/learnings/index
 
 生活
 --------------------
 
 .. toctree::
    :maxdepth: 1
+   :glob:
+   :numbered:
 
 联系方式
 -------------------
