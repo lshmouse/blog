@@ -11,8 +11,8 @@ Welcome to Shaohui Liu's Blog's documentation!
 .. toctree::
    :maxdepth: 1
    
-   distributed-system-papers
-   hbase/hbase
+   work/distributed-system-papers
+   work/hbase/hbase
 
 生活
 --------------------
