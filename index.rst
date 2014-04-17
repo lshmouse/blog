@@ -16,7 +16,8 @@ Welcome to Shaohui Liu's Blog
    work/distributed-system/index
    work/hbase/index
    work/learnings/index
-   work/tool-chains
+   work/toolchains/index
+   work/algorithm/index
    work/links
    
 生活
