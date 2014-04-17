@@ -30,13 +30,13 @@ Welcome to Shaohui Liu's Blog
 
 联系方式
 -------------------
+* Wechat: lshmouse
 * Email: lshmouse@gmail.com 
 * Github: https://github.com/lshmouse/
 * Bitbucket: https://bitbucket.org/lshmouse
 
 .. Indices and tables
-.. ==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
+   ==================
+   * :ref:`genindex`
+   * :ref:`modindex`
+   * :ref:`search`
