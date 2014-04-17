@@ -8,9 +8,8 @@
    consistency-model 
    NumbersEveryoneShouldKnown
    roads
-	 GFS-Notes
+   GFS-Notes
    MapReduce-Notes 
    BigTable-Notes
    Wisdoms
    interesting-systems
-
