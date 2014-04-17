@@ -1,4 +1,4 @@
-Hadoop MapReduce InputFormat
+Mapreduce输入输出格式
 ============================
 
 Hadoop Mapreduce支持多种输出格式：Text, SequenceFile, HFile等，
