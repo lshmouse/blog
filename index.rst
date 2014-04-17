@@ -13,6 +13,7 @@ Welcome to Shaohui Liu's Blog
    :glob:
    :numbered:
 
+   work/linux/index
    work/distributed-system/index
    work/hbase/index
    work/learnings/index
