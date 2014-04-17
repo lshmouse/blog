@@ -1,4 +1,4 @@
-Hbase 主要的issues
+Hbase 重要的issues
 ============================
 
 Too many Hlogs
@@ -16,10 +16,13 @@ Tier based compaction: https://issues.apache.org/jira/browse/HBASE-6371
 upport level compaction: https://issues.apache.org/jira/browse/HBASE-7519
 Support stripe compaction: https://issues.apache.org/jira/browse/HBASE-7667
 
-
-Hlog split
+Hlog split优化
 ---------------------------
 https://issues.apache.org/jira/browse/HBASE-7006
+
+Namespace
+---------------------------
+https://issues.apache.org/jira/browse/HBASE-8015
 
 cloudera blog
 ----------------------------
@@ -39,7 +42,3 @@ http://blog.cloudera.com/blog/2012/07/hbase-replication-overview-2/
 http://blog.cloudera.com/blog/2012/08/hbase-replication-operational-overview/
 
 http://blog.cloudera.com/blog/2012/11/apache-hbase-assignmentmanager-improvements/
-
-Namespace
----------------------------
-https://issues.apache.org/jira/browse/HBASE-8015

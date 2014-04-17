@@ -1,4 +1,5 @@
 IT智慧语录
+======================
 
 -  墨菲定律. Anything that can go wrong will go wrong
 -  实现不出好的系统是因为你根本没有见过好的系统，不知道他张什么样

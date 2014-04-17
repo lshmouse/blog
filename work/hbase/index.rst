@@ -6,3 +6,4 @@ HBase实践
    :maxdepth: 1
    
    hbase_issues
+   valuable_resource

@@ -1,6 +1,5 @@
 Numbers Everyone Should Known from Dean 2009
 ============================================
-
 This group of numbers is from a presentation Jeff Dean gave at a
 Engineering All-Hands Meeting at Google 2009.
 
@@ -19,14 +18,3 @@ Engineering All-Hands Meeting at Google 2009.
 -  Send packet CA->Netherlands->CA 150,000,000 ns
 
 Ref: https://gist.github.com/2843375
-
-What determine this numbers
-===========================
-
-What about now? 2012
-====================
-
-New divices
-===========
-
-SSD
