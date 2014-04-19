@@ -1,21 +1,14 @@
-+-------------------------+
-| layout: post            |
-+-------------------------+
-| category : toolchains   |
-+-------------------------+
-| tags : [saltstack]      |
-+-------------------------+
-
-{% include JB/setup %}
+saltstack
+==================
 
 介绍
-~~~~
+---------
 
 saltstack 是一个轻量机的远程命令执行工具. 相对与puppet/chef，
 saltstack轻量，简单，方便配置，而且是一个简单的命令行工具，方便使用。
 
 安装
-~~~~
+---------
 
 参考：http://wiki.saltstack.cn/reproduction/om-auto-salt#salt.2BdoRbiYjF-
 
@@ -64,7 +57,7 @@ master端接受key：
     /etc/init.d/salt-minion start
 
 用例
-~~~~
+----------------
 
 修改crontab里面log修改时间24小时 改为72 小时
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

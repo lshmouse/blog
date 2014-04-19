@@ -1,12 +1,5 @@
-+-------------------------------------------------+
-| layout: post                                    |
-+-------------------------------------------------+
-| category : toolchains                           |
-+-------------------------------------------------+
-| tags : [git, protobuf, django, blade, puppet]   |
-+-------------------------------------------------+
-
-{% include JB/setup %}
+开发工具大杂烩
+==============
 
 Dev tools for a company
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,7 +38,6 @@ Bootstrap see: http://twitter.github.com/bootstrap/
 
 进程监控
 ^^^^^^^^
-
 python: supervisord http://www.supervisord.org/
 supervisord的问题在于升级需要重启所有进程
 
