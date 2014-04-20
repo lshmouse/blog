@@ -11,6 +11,7 @@
    supervisord
    saltstack
    jekyll
-   complie-jvm
+   compile-jvm
    dev-tools
    good-apps
+   dev-workflow

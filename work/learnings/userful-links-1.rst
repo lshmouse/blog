@@ -1,3 +1,6 @@
+链接推荐1
+==========
+
 1.  `介绍LinuxContainer和Cgroup文章： <http://www.ibm.com/developerworks/cn/linux/l-lxc-containers/#resources>`_
     主要用于轻量级的虚拟化，与虚拟机比较：资源利用率比较高，但是隔离效果没有虚拟机好，现在linux内核支持cpu和内存的隔离，可能还需要网络，和磁盘读写的隔离。
 
