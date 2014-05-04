@@ -14,5 +14,6 @@
 ----------------
 * `Sphinx写文档的例子 <http://pm.readthedocs.org/>`_
 * `分布式系统课程 <http://courses.engr.illinois.edu/cs525/>`_
+* `厦大数据库实验室文档	<http://dblab.xmu.edu.cn/topic/research/documentation/>`_
 * `提问的智慧 <http://www.wapm.cn/smart-questions/smart-questions-zh.html>`_
 * `Git内部实现原理 <http://git-scm.com/book/zh/Git-内部原理>`_
