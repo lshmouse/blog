@@ -1,4 +1,11 @@
 大规模监控报警系统
+=========================
+
+参考
+--------
+http://www.slideshare.net/quipo/
+
+https://github.com/monigusto/vagrant-monigusto
 
 传统: ganglia, nagios
 ---------------------

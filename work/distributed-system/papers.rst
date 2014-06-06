@@ -27,3 +27,9 @@ Amazon
 Microsoft
 -----------
 * `Auotpilot <http://research.microsoft.com/pubs/64604/osr2007.pdf>`_
+
+
+参考
+----------
+- http://www.bitstech.net/2013/12/27/distributed-storage-papers/
+
