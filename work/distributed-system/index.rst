@@ -13,3 +13,4 @@
    BigTable-Notes
    Wisdoms
    interesting-systems
+   weed-fs
