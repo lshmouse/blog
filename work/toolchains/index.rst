@@ -15,3 +15,4 @@
    dev-tools
    good-apps
    dev-workflow
+   maven-sphinx
