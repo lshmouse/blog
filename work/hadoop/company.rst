@@ -21,5 +21,10 @@ altiscale
 https://www.altiscale.com/
 Hadoop as A Service
 
+Sequenceiq
+-----------
+cloudbreak at http://blog.sequenceiq.com
+Hadoop as A Service
+Hadoop on docker
 
 To be continued
