@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.4. 技术道路 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="2. 分布式系统" href="index.html" />
+    <link rel="next" title="2.5. 类GFS的分布式文件系统实现要点" href="GFS-Notes.html" />
+    <link rel="prev" title="2.3. Numbers Everyone Should Known from Dean 2009" href="NumbersEveryoneShouldKnown.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="GFS-Notes.html" title="2.5. 类GFS的分布式文件系统实现要点"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="NumbersEveryoneShouldKnown.html" title="2.3. Numbers Everyone Should Known from Dean 2009"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">2. 分布式系统</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>2.4. 技术道路<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>大数据系统从google的三篇经典论文(GFS, MapReduce, BigTable)开始，
+还有Google强大的集群管理系统Borg, 到开源的Hadoop实现(HDFS, Mapreduce,
+HBase, Yarn), 慢慢衍生出一个完整平台和生态系统.</p>
+<div class="section" id="google">
+<h2>2.4.1. Google的道路<a class="headerlink" href="#google" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>GFS -&gt; Colossus(GFS2)</li>
+<li>MapReduce -&gt; Tenzing -&gt; Dremel</li>
+<li>BigTable -&gt; Procator -&gt; MegaStore -&gt; Spanner</li>
+<li>Borg -&gt; Omega</li>
+</ul>
+</div>
+<div class="section" id="hadoop">
+<h2>2.4.2. Hadoop的道路<a class="headerlink" href="#hadoop" title="Permalink to this headline">¶</a></h2>
+<p>开源Hadoop基本上跟着Google的路走, 只不过慢了N年. 不过这也是需求驱动，
+毕竟没有几个公司到达Google那个规模。</p>
+<ul class="simple">
+<li>核心：HDFS. Mapreduce, HBase, Yarn</li>
+<li>外围: Hive, Storm</li>
+<li>黑马: Spark</li>
+</ul>
+</div>
+<div class="section" id="amazon">
+<h2>2.4.3. Amazon的道路<a class="headerlink" href="#amazon" title="Permalink to this headline">¶</a></h2>
+<p>Amazon是一个比较独立技术道路，主要AWS形式对外提供云服务。</p>
+<p>EC2, EBS, S3, DynamoDB</p>
+</div>
+<div class="section" id="id2">
+<h2>2.4.4. 大规模运维和监控系统<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>这是各个大公司软实力所在，这些基础的系统好坏直接关系到服务质量和产品迭代速度。</p>
+<p>在这里记录一些对这些技术的理解, 欢迎交流～ <a class="reference external" href="mailto:lshmouse&#37;&#52;&#48;gmail&#46;com">lshmouse<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.4. 技术道路</a><ul>
+<li><a class="reference internal" href="#google">2.4.1. Google的道路</a></li>
+<li><a class="reference internal" href="#hadoop">2.4.2. Hadoop的道路</a></li>
+<li><a class="reference internal" href="#amazon">2.4.3. Amazon的道路</a></li>
+<li><a class="reference internal" href="#id2">2.4.4. 大规模运维和监控系统</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="NumbersEveryoneShouldKnown.html"
+                        title="previous chapter">2.3. Numbers Everyone Should Known from Dean 2009</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="GFS-Notes.html"
+                        title="next chapter">2.5. 类GFS的分布式文件系统实现要点</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/distributed-system/roads.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="GFS-Notes.html" title="2.5. 类GFS的分布式文件系统实现要点"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="NumbersEveryoneShouldKnown.html" title="2.3. Numbers Everyone Should Known from Dean 2009"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >2. 分布式系统</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

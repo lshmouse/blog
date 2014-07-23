@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.11. 开发流程的探索 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="6. 工具链" href="index.html" />
+    <link rel="next" title="6.12. Maven sphinx 插件" href="maven-sphinx.html" />
+    <link rel="prev" title="6.10. 好用的Apps" href="good-apps.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="maven-sphinx.html" title="6.12. Maven sphinx 插件"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="good-apps.html" title="6.10. 好用的Apps"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">6. 工具链</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>6.11. 开发流程的探索<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>最近探讨什么什么样的开发流程能够提交开发效率, 把其中主要的几点记录下来</p>
+<ol class="arabic simple">
+<li>需求要明确场景，解决什么问题，必须在需求管理系统上写清楚</li>
+</ol>
+<p>(2)设计和开发方案至少要与组内其他成员沟通确认之后，才可以开始做. 重要模块更需要找时间给组内所有讲一遍</p>
+<p>(3)开发：代码规范google cpp style：cpplint；</p>
+<p>单元测试：保证覆盖场景</p>
+<p>重要特性必须增加，gflag开关项</p>
+<p>(4)codeview.</p>
+<p>提交review： 代码不是最新不能提交； cpplint 不过不能提交；提供相应脚本支持</p>
+<p>review ： 分为可读性review，和功能性review。 可读性review主要代码风格，函数以及变量命名是否规范，是否意义清晰。只有可读性review通过之后才能进行功能review， 功能review侧重于逻辑是否合理，是否存在漏洞或者没有考虑到情况，单元测试是否覆盖所有场景。</p>
+<p>对于存在问题的review，要坚决打回</p>
+<ol class="arabic simple" start="5">
+<li>提交：代码不是最新不能提交； cpplint 不过不能提交；所有测试有任何一个不通过不能提交，提交是带上diff的MD5，需要和codereview平台上的issue的MD5对照，防止挂羊头卖狗肉。</li>
+</ol>
+<p>每天只需svn提交check脚本，发现不按照规范提交的代码，通报。</p>
+<p>(6)ci ，重新跑所有的单元测试；加回归测试，以及系统测试</p>
+<p>(7)如果存在问题，组内的BUILDCOP强制回滚，防止block组内其他人的开发</p>
+<p>(8)bugfix: 确认之后必须补上相应测试</p>
+<p>感觉有几点很重要：</p>
+<p>a, 文档和代码一样重要</p>
+<p>b, 功能需要测试来保证</p>
+<p>d, 以上需要流程和制度来保证</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="good-apps.html"
+                        title="previous chapter">6.10. 好用的Apps</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="maven-sphinx.html"
+                        title="next chapter">6.12. Maven sphinx 插件</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/toolchains/dev-workflow.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="maven-sphinx.html" title="6.12. Maven sphinx 插件"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="good-apps.html" title="6.10. 好用的Apps"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >6. 工具链</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

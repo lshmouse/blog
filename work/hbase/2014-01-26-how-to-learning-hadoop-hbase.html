@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>layout: post</td>
+</tr>
+<tr class="row-even"><td>title: &#8220;how to learning Hadoop/HBase&#8221;</td>
+</tr>
+<tr class="row-odd"><td>description: &#8220;&#8221;</td>
+</tr>
+<tr class="row-even"><td>category:</td>
+</tr>
+<tr class="row-odd"><td>tags: []</td>
+</tr>
+</tbody>
+</table>
+<p>{% include JB/setup %} 这是一篇给网友的回信。他看了我在China Hadop
+Summit上《小米Hbase实践》分享之后，来信咨询怎么学习Hadoop/Hbase?</p>
+<p>从我自己的经历看, 学习Hadoop/Hbase步骤如下：</p>
+<p>第一步，先看一下google的GFS/Mapreduce/BIgtable三篇论文(请看英文版)。Hadoop/Hbase都是从
+google这三篇 论文来的。
+三篇论文很经典，也很简练，很多重要的地方一笔带过。需要后来看书，看代码的时候，回过头来在看论文，在琢磨一遍。
+前三遍看得时候可能看不是很懂，只能有一个大概的认识。不要气馁，论文和后面的实践结合，才能慢慢琢磨出作者所要表达的意思。
+这三篇论文，过一段时间看一遍，都会有新的收获的</p>
+<p>第二步， Hadoop/Hbase书。 推荐&lt;&gt;, &lt;&gt;
+介绍Hadoop/Hbase具体实现和实践的书，熟悉Hadoop/Hbase一些大的实现方法和原理。
+这两本书可以先看一遍，很多不了解，打上问号，在后面实践的时候，重新回过头来看，加深理解。这两本书也是需要看很多遍的。</p>
+<p>第三步，
+实践，最好工作中需要使用到这些东西。看书可能很表面或者肤浅，很难看出深层次的东西，为什么这么实现而不那么实现。
+从实际问题出发，去尝试解决实际问题， 从实际中学习。
+这一步我觉得环境很重要，最好能到一个做这方面工作的team，一方面也许有人指点，另一方面也有人一起讨论，进步会更快一些。学的东西不
+用，很快就会荒废掉的。</p>
+<p>第四步，代码层面，参与社区开发。从第三步开始需要开始关注代码实现的具体细节了，虽然大的原理都一样，但是工程实现上千差万别。最好的方
+式，参与到社区开发里面。
+实践中遇到，看代码，找到问题，修复，然后提交社区，和社区沟通。</p>
+<p>第五步，Hadoop/Hbase 生态系统.
+Hadoop现在已经是大的生态的系统了，外围有很多系统如hive,
+sqoop等等，了解这些系统对在公司实施Hadoop/Hbase很有帮忙。</p>
+<p>第六步，beyond Hadoop/Hbase.
+在对Hadoop/Hbase很了解情况下，可以关注一些google这个体系之外的系统，比如Amazon
+Dynamo等，对比他们应用场景和系统设计的考虑，</p>
+<p>前四步，比较重要的，后两步看以后发展了。</p>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/hbase/2014-01-26-how-to-learning-hadoop-hbase.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

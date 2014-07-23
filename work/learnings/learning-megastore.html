@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.6. MegaStore &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="5. 持续学习" href="index.html" />
+    <link rel="next" title="5.7. Hadoop YARN" href="learning-yarn.html" />
+    <link rel="prev" title="5.5. 学习Go语言" href="learning-golang.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="learning-yarn.html" title="5.7. Hadoop YARN"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="learning-golang.html" title="5.5. 学习Go语言"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">5. 持续学习</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="megastore">
+<h1>5.6. MegaStore<a class="headerlink" href="#megastore" title="Permalink to this headline">¶</a></h1>
+<p>今天组内大神分享了google MegaStore的设计,
+先把自己理解了部分记录下来，以后在对照论文，加深理解.</p>
+<p>MegaStore是google构建在bigtable之上跨数据中心，支持事务，支持sql的分布式数据库方案</p>
+<div class="section" id="id1">
+<h2>5.6.1. 基本架构<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>MegaStore library: MegaStore客户端库，方便用户使用megaStore Replication
+Manager: 与一个数据中心的BigTable对应，负责管理 Coordinator:
+负责本replica那些entry groups是最新。</p>
+<p>在Current Read时，对于当前写的Entry Group, 当前的Replica是最新的， Current
+Read就可以直接本地读。 如果不是最新的Current
+Read时候，需要Apply没有完成的事务日志，使得当前当前Replica达到最新。</p>
+<p>BigTable: 存储实际表的数据和事务日志</p>
+</div>
+<div class="section" id="id2">
+<h2>5.6.2. 数据模型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id3">
+<h2>5.6.3. 写流程<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>发起一个Current Read, 获取当前操作日志的postion/timestamp</li>
+<li>发起一次paxos的写操作，将当前的操作日志写到BigTable上Enntry
+Group的Root Row的操作日志列上</li>
+<li>对于未正常返回的</li>
+<li>异步将当前操作写到bigtable的数据行上。</li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h2>5.6.4. 读流程<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id5">
+<h2>5.6.5. 性能<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>单个Entry Group, 读写10ms， 写100-400ms， 取决于跨机房的延时。
+虽然单个Entry Group的写性能比较差，但是一个表可以分为非常多的Entry
+Group，如互联网业务中一个用户一个entry group。总的吞吐量是比较大。</p>
+</div>
+<div class="section" id="id6">
+<h2>5.6.6. 参考<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.slideshare.net/schubertzhang/learning-from-google-megastore-part1-12149098">http://www.slideshare.net/schubertzhang/learning-from-google-megastore-part1-12149098</a></li>
+<li><a class="reference external" href="http://www.slideshare.net/arinto/megastore-providing-scalable-highly-available-storage-for-interactive-services-id2220-presentation">http://www.slideshare.net/arinto/megastore-providing-scalable-highly-available-storage-for-interactive-services-id2220-presentation</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">5.6. MegaStore</a><ul>
+<li><a class="reference internal" href="#id1">5.6.1. 基本架构</a></li>
+<li><a class="reference internal" href="#id2">5.6.2. 数据模型</a></li>
+<li><a class="reference internal" href="#id3">5.6.3. 写流程</a></li>
+<li><a class="reference internal" href="#id4">5.6.4. 读流程</a></li>
+<li><a class="reference internal" href="#id5">5.6.5. 性能</a></li>
+<li><a class="reference internal" href="#id6">5.6.6. 参考</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="learning-golang.html"
+                        title="previous chapter">5.5. 学习Go语言</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="learning-yarn.html"
+                        title="next chapter">5.7. Hadoop YARN</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/learnings/learning-megastore.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="learning-yarn.html" title="5.7. Hadoop YARN"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="learning-golang.html" title="5.5. 学习Go语言"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >5. 持续学习</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

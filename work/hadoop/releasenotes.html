@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Hadoop Release Notes &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="hadoop-release-notes">
+<h1>Hadoop Release Notes<a class="headerlink" href="#hadoop-release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hadoop-2-0-3">
+<h2>hadoop-2-0-3<a class="headerlink" href="#hadoop-2-0-3" title="Permalink to this headline">¶</a></h2>
+<p>see:
+<a class="reference external" href="http://blog.cloudera.com/blog/2013/02/apache-hadoop-2-0-3-alpha-released/">http://blog.cloudera.com/blog/2013/02/apache-hadoop-2-0-3-alpha-released/</a></p>
+<p>比较感兴趣的issue： (a) HDFS-3077: Quorum-based NameNode HA.
+不再需要特殊的硬件如NFS,
+实现namenode的高可用性，设计和实现文档都非常详细：<a class="reference external" href="https://issues.apache.org/jira/secure/attachment/12547598/qjournal-design.pdf">https://issues.apache.org/jira/secure/attachment/12547598/qjournal-design.pdf</a>
+是cloudera贡献的。</p>
+<ol class="loweralpha simple" start="2">
+<li>yarn的日渐成熟。现在yarn的RM(reource
+manager)还是一个单点故障。不过yarn支持RM的recovery(<a class="reference external" href="https://issues.apache.org/jira/browse/YARN-128">https://issues.apache.org/jira/browse/YARN-128</a>);
+资源调度增加对cpu的考虑，支持cgroup的container，做到task之间更好的隔离(cpu/memmory,
+磁盘io和网络隔离感觉还不完善)。yarn已经越来越成熟，在yahoo内部，在yarn上已经运行了上千万个job</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Hadoop Release Notes</a><ul>
+<li><a class="reference internal" href="#hadoop-2-0-3">hadoop-2-0-3</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/hadoop/releasenotes.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

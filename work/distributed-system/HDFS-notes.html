@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HDFS 实现要点 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="hdfs">
+<h1>HDFS 实现要点<a class="headerlink" href="#hdfs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>客户端<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dfsclient">
+<h3>DFSClient<a class="headerlink" href="#dfsclient" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>NameNode交互</li>
+<li>文件租约管理</li>
+</ul>
+</div>
+<div class="section" id="dfsinputstream">
+<h3>DFSInputStream<a class="headerlink" href="#dfsinputstream" title="Permalink to this headline">¶</a></h3>
+<p>BlockReaderLocalLegacy
+RemoteBlockReader</p>
+<p>接受读Packet PacketReceiver</p>
+</div>
+<div class="section" id="dfsoutputstream">
+<h3>DFSOutputStream<a class="headerlink" href="#dfsoutputstream" title="Permalink to this headline">¶</a></h3>
+<p>发送Packet DataStreamer
+接受Ack ResponseProcessor</p>
+</div>
+</div>
+<div class="section" id="datanode">
+<h2>DataNode<a class="headerlink" href="#datanode" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dataxceiver">
+<h3>DataXceiver<a class="headerlink" href="#dataxceiver" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="namenode">
+<h2>NameNode<a class="headerlink" href="#namenode" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>协议<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="client-namenode">
+<h3>Client &lt;&#8211;&gt; NameNode<a class="headerlink" href="#client-namenode" title="Permalink to this headline">¶</a></h3>
+<p>ClientProtocol
+- create/Close/rename/move ...
+- leaserecovery
+- blocklocation</p>
+</div>
+<div class="section" id="client-datanode">
+<h3>Client &lt;&#8211;&gt; DataNode<a class="headerlink" href="#client-datanode" title="Permalink to this headline">¶</a></h3>
+<p>DataTransferProtocol
+- Read
+- Write</p>
+</div>
+<div class="section" id="datanode-namenode">
+<h3>DataNode &lt;&#8211;&gt; NameNode<a class="headerlink" href="#datanode-namenode" title="Permalink to this headline">¶</a></h3>
+<p>DatanodeProtocol
+- Register
+- block report</p>
+<p>分布式NameNode探索
+~~~~~~~~~~~&#8212;&#8212;&#8212;&#8211;
+- <a class="reference external" href="http://code.google.com/a/apache-extras.org/p/giraffa/">http://code.google.com/a/apache-extras.org/p/giraffa/</a>
+- <a class="reference external" href="http://www.slideshare.net/schubertzhang/rockstor-a-cloud-object-system-based-on-hadoop">http://www.slideshare.net/schubertzhang/rockstor-a-cloud-object-system-based-on-hadoop</a>
+- <a class="reference external" href="http://www.bitstech.net/2013/12/16/hadoop-object-storage/">http://www.bitstech.net/2013/12/16/hadoop-object-storage/</a></p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>参考<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.slideshare.net/hanborq/hadoop-hdfs-detailed-introduction">http://www.slideshare.net/hanborq/hadoop-hdfs-detailed-introduction</a></li>
+<li><a class="reference external" href="http://www.slideshare.net/KonstantinVShvachko/hdfs-design-principles">http://www.slideshare.net/KonstantinVShvachko/hdfs-design-principles</a></li>
+<li><a class="reference external" href="http://www.slideshare.net/acordova00/design-for-a-distributed-name-node">http://www.slideshare.net/acordova00/design-for-a-distributed-name-node</a></li>
+<li><a class="reference external" href="http://yanbohappy.sinaapp.com">http://yanbohappy.sinaapp.com</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">HDFS 实现要点</a><ul>
+<li><a class="reference internal" href="#id1">客户端</a><ul>
+<li><a class="reference internal" href="#dfsclient">DFSClient</a></li>
+<li><a class="reference internal" href="#dfsinputstream">DFSInputStream</a></li>
+<li><a class="reference internal" href="#dfsoutputstream">DFSOutputStream</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#datanode">DataNode</a><ul>
+<li><a class="reference internal" href="#dataxceiver">DataXceiver</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#namenode">NameNode</a></li>
+<li><a class="reference internal" href="#id2">协议</a><ul>
+<li><a class="reference internal" href="#client-namenode">Client &lt;&#8211;&gt; NameNode</a></li>
+<li><a class="reference internal" href="#client-datanode">Client &lt;&#8211;&gt; DataNode</a></li>
+<li><a class="reference internal" href="#datanode-namenode">DataNode &lt;&#8211;&gt; NameNode</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">参考</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/distributed-system/HDFS-notes.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

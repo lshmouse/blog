@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>使用手记 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>layout: post</td>
+</tr>
+<tr class="row-even"><td>title: &#8220;hbase bulkload&#8221;</td>
+</tr>
+<tr class="row-odd"><td>description: &#8220;&#8221;</td>
+</tr>
+<tr class="row-even"><td>category: HBase</td>
+</tr>
+<tr class="row-odd"><td>tags: [HBase]</td>
+</tr>
+</tbody>
+</table>
+<p>{% include JB/setup %}</p>
+<p>参考：<a class="reference external" href="http://hbase.apache.org/book.html#arch.bulk.load">http://hbase.apache.org/book.html#arch.bulk.load</a></p>
+<p>importtsv是使用mapreduce批量导入数据到hbase的工具。importtsv的输出方式有两种，一种是直接写入hbase，另外一种是先将数据写成hfile格式，
+然后使用 completebulkloads 工具将这些 hfile
+复制到对应region的hfile目录，然后通知hbase把这些hfile的数据加载起来。第一种方式直接一些，一个mapreduce作业就可以完成，第二种方式效率更高，需要两步来完成。</p>
+<p>为了将tsv格式文件数据导入hbase，需要一个映射关系，即tsv里面的列 和hbase
+row key /cf:qualifier对应关系。 通过-Dimporttsv.columns=
+选项指定，顺序需要和tsv里面列对应，另外需要指定一个列作为hbase row
+key.用HBASE_ROW_KEY标识。
+现在importtsv不直接支持tsv里面的多个列映射为一 个row key,
+如这种类型的row key: {columnA}-{columnB}-{columnC}，
+可以提前处理一下tsv文件，将columnA，columnB，
+columnC合为{columnA}-{columnB}-{columnC}</p>
+<div class="section" id="id1">
+<h1>使用手记<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>数据文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre># cat user-info.txt
+userId name  age  sex
+1 Jim    24   M
+2 Bob    26   F
+3 Robert 24   M
+...
+</pre></div>
+</div>
+<p>使用配置好的hadoop集群包， 然后上传数据到hdfs</p>
+<div class="highlight-python"><div class="highlight"><pre>bin/hdfs dfs -copyFromLocal user-info.txt /user/liushaohui/
+</pre></div>
+</div>
+</div>
+<div class="section" id="hbase-schema">
+<h2>hbase schema<a class="headerlink" href="#hbase-schema" title="Permalink to this headline">¶</a></h2>
+<table class="table table-bordered table-striped table-condensed">
+   <tr>
+      <td><p>row</p>
+</td>
+      <td><p>ColumnFamily</p>
+</td>
+      <td><p>Column</p>
+</td>
+      <td><p>version</p>
+</td>
+      <td><p>value</p>
+</td>
+   </tr>
+   <tr>
+      <th rowspan="4"><p>userid</p>
+</th>
+      <th rowspan="4"><p>I</p>
+</th>
+      <td><p>info</p>
+</td>
+      <td><p>1</p>
+</td>
+      <td><p>数据</p>
+</td>
+   </tr>
+   <tr>
+      <td><p>name</p>
+</td>
+      <td><p>1</p>
+</td>
+      <td><p>数据</p>
+</td>
+   </tr>
+   <tr>
+      <td><p>age</p>
+</td>
+      <td><p>1</p>
+</td>
+      <td><p>数据</p>
+</td>
+   </tr>
+   <tr>
+      <td><p>sex</p>
+</td>
+      <td><p>1</p>
+</td>
+      <td><p>数据</p>
+</td>
+   </tr>
+</table></div>
+<div class="section" id="id3">
+<h2>映射关系<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>userid -&gt; HBASE_ROW_KEY
+name-&gt; I:name
+age-&gt; I:age
+sex -&gt; I:sex
+</pre></div>
+</div>
+<p>下载配置好的hbase集群发布包创建表（在安全集群，普通用户没有建表权限）：</p>
+<div class="highlight-python"><div class="highlight"><pre>bin/hbase shell
+create &#39;test-user-info&#39;, { NAME =&gt; &#39;I&#39;, VERSIONS =&gt; &#39;1&#39;, BLOOMFILTER =&gt; &#39;ROW&#39;, COMPRESSION =&gt; &#39;SNAPPY&#39;, COMPRESSION_COMPACT =&gt; &#39;SNAPPY&#39;, REPLICATION_SCOPE =&gt; 1 }
+</pre></div>
+</div>
+</div>
+<div class="section" id="hbase">
+<h2>直接写入hbase<a class="headerlink" href="#hbase" title="Permalink to this headline">¶</a></h2>
+<p>使用ImportTsv导入数据:</p>
+<div class="highlight-python"><div class="highlight"><pre>bin/hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns=HBASE_ROW_KEY,I:name,I:age,I:sex test-user-info /user/liushaohui/user-info.txt
+</pre></div>
+</div>
+<p>mapreduce作业成功：</p>
+<div class="highlight-python"><div class="highlight"><pre>13/07/31 15:37:57 INFO mapreduce.Job:  map 100% reduce 0%
+13/07/31 15:37:57 INFO mapreduce.Job: Job job_1373456666633_25299 completed successfully
+13/07/31 15:37:57 INFO mapreduce.Job: Counters: 28
+</pre></div>
+</div>
+<p>验证 运行</p>
+<div class="highlight-python"><div class="highlight"><pre>bin/hbase shell
+hbase(main):004:0&gt; scan &#39;test-user-info&#39;
+ROW                                            COLUMN+CELL
+1                                            column=I:age, timestamp=1375256276218, value=24
+1                                            column=I:name, timestamp=1375256276218, value=Jim
+1                                            column=I:sex, timestamp=1375256276218, value=M
+2                                            column=I:age, timestamp=1375256276218, value=26
+2                                            column=I:name, timestamp=1375256276218, value=Bob
+2                                            column=I:sex, timestamp=1375256276218, value=F
+3                                            column=I:age, timestamp=1375256276218, value=24
+3                                            column=I:name, timestamp=1375256276218, value=Robert
+3                                            column=I:sex, timestamp=1375256276218, value=M
+</pre></div>
+</div>
+</div>
+<div class="section" id="hfile">
+<h2>生成hfile再导入<a class="headerlink" href="#hfile" title="Permalink to this headline">¶</a></h2>
+<p>当指定选项-Dimporttsv.bulk.output后，ImportTsv程序会直接生成hfile,根据table当前region范围来分区，每一个region对于一个reduce，每个column
+family一个文件</p>
+<div class="highlight-python"><div class="highlight"><pre>bin/hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.bulk.output=/user/liushaohui/user-output -Dimporttsv.columns=HBASE_ROW_KEY,I:name,I:age,I:sex test-user-info /user/liushaohui/user-info.txt
+</pre></div>
+</div>
+<p>结果：</p>
+<div class="highlight-python"><div class="highlight"><pre>13/07/31 15:59:36 INFO mapreduce.Job:  map 0% reduce 0%
+13/07/31 15:59:41 INFO mapreduce.Job:  map 100% reduce 0%
+13/07/31 15:59:46 INFO mapreduce.Job:  map 100% reduce 100%
+13/07/31 15:59:46 INFO mapreduce.Job: Job job_1373456666633_25339 completed successfully
+</pre></div>
+</div>
+<p>hdfs:</p>
+<div class="highlight-python"><div class="highlight"><pre>bin/hadoop dfs -ls /user/liushaohui/user-output
+Found 2 items
+drwxr-xr-x   - liushaohui supergroup          0 2013-07-31 15:59 /user/liushaohui/user-output/I
+-rw-r--r--   3 liushaohui supergroup          0 2013-07-31 15:59 /user/liushaohui/user-output/_SUCCESS
+</pre></div>
+</div>
+<p>让hbase 加载对于hfile文件.</p>
+<p>LoadIncrementalHFiles工具通过region
+server将生成的hfile文件通过文件系统的rename机器导致hdfs对于目录，然后通知region加载这个hfile。
+因此需要保证运行hbase region server的用户对需要导入的数据目录有读写权限</p>
+<div class="highlight-python"><div class="highlight"><pre>bin/hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /user/liushaohui/user-output test-user-info
+</pre></div>
+</div>
+<p>结果：</p>
+<div class="highlight-python"><div class="highlight"><pre>bin/hbase shell
+hbase(main):002:0&gt; scan &#39;test-user-info&#39;
+ROW                                            COLUMN+CELL
+1                                            column=I:age, timestamp=1375257579771, value=24
+1                                            column=I:name, timestamp=1375257579771, value=Jim
+1                                            column=I:sex, timestamp=1375257579771, value=M
+2                                            column=I:age, timestamp=1375257579771, value=26
+2                                            column=I:name, timestamp=1375257579771, value=Bob
+2                                            column=I:sex, timestamp=1375257579771, value=F
+3                                            column=I:age, timestamp=1375257579771, value=24
+3                                            column=I:name, timestamp=1375257579771, value=Robert
+3                                            column=I:sex, timestamp=1375257579771, value=M
+</pre></div>
+</div>
+<p>总结，bulkload工具在将离线处理的结构化数据批量导入hbase，然后服务线上业务还是非常方便的。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">使用手记</a><ul>
+<li><a class="reference internal" href="#id2">数据文件</a></li>
+<li><a class="reference internal" href="#hbase-schema">hbase schema</a></li>
+<li><a class="reference internal" href="#id3">映射关系</a></li>
+<li><a class="reference internal" href="#hbase">直接写入hbase</a></li>
+<li><a class="reference internal" href="#hfile">生成hfile再导入</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/hbase/2013-08-01-hbase-bulkload.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

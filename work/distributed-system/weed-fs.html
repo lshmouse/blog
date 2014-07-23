@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.10. weed-fs &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="2. 分布式系统" href="index.html" />
+    <link rel="next" title="3. HBase实践" href="../hbase/index.html" />
+    <link rel="prev" title="2.9. 有趣的系统" href="interesting-systems.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../hbase/index.html" title="3. HBase实践"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="interesting-systems.html" title="2.9. 有趣的系统"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">2. 分布式系统</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="weed-fs">
+<h1>2.10. weed-fs<a class="headerlink" href="#weed-fs" title="Permalink to this headline">¶</a></h1>
+<p>weed-fs是Go语言实现的，类facebook haystack的面向blob的分布式存储系统.</p>
+<p>上周从Quora问题
+<a class="reference external" href="http://www.quora.com/What-is-a-good-choice-for-storing-blob-like-files-in-a-distributed-environment">http://www.quora.com/What-is-a-good-choice-for-storing-blob-like-files-in-a-distributed-environment</a>
+下面的回答中发现。最近比较关注Go语言以及GO实现的一些分布式系统，因此将代码下载下来研究了一下。</p>
+<div class="section" id="id1">
+<h2>2.10.1. 项目地址<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://code.google.com/p/weed-fs/">https://code.google.com/p/weed-fs/</a></p>
+<p>项目wiki中有特性介绍，请移步自己看～</p>
+</div>
+<div class="section" id="id2">
+<h2>2.10.2. 主要特点<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>类facebook haystack, 面向blob的对象存储</li>
+<li>Master-Worker架构。 Blob存储在物理volume,
+一个worker上包含很多物理卷，这个物理卷 + 数据存放策略组成逻辑卷，Master管理这些逻辑卷</li>
+<li>Master使用raft协议保证无单点故障</li>
+<li>灵活blob存放策略，支持数据中心+ 同数据中心不同机架+ 同数据中心同机架</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>2.10.3. 编译<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>安装依赖:</p>
+<div class="highlight-python"><div class="highlight"><pre>go get bazil.org/fuse/
+go get github.com/disintegration/imaging/
+go get github.com/goraft/raft/
+go get github.com/gorilla/mux
+go get github.com/rwcarlsen/goexif
+go get github.com/syndtr/goleveldb
+go get github.com/tgulacsi/go-cdb/
+</pre></div>
+</div>
+<p>下载代码后编译</p>
+<div class="highlight-python"><div class="highlight"><pre>go get code.google.com/p/weed-fs/
+go build go build code.google.com/p/weed-fs/go/weed
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>2.10.4. 搭建测试集群<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>首先启动master, 在启动volume server(数据中心dc1中, 机架rack1上两个节点，
+机架rack2上一个几点。数据中心dc2上，机架rack3上一个节点)</p>
+<div class="highlight-python"><div class="highlight"><pre># start weed master
+./weed master &gt; master.log 2&gt;&amp;1 &amp;
+
+# start weed volume server
+mkdir -p demo/data1
+./weed volume -dir=demo/data1 -max=5 -mserver=localhost:9333 -port=8080 -dataCenter=dc1 -rack=rack1 &gt; node-1.log 2&gt;&amp;1 &amp;
+
+mkdir -p demo/data2
+./weed volume -dir=demo/data2 -max=5 -mserver=localhost:9333 -port=8081 -dataCenter=dc1 -rack=rack1 &gt; node-2.log 2&gt;&amp;1 &amp;
+
+# datanode in different rack, but same data center
+mkdir -p demo/data3
+./weed volume -dir=demo/data3 -max=5 -mserver=localhost:9333 -port=8082 -dataCenter=dc1 -rack=rack2 &gt; node-3.log 2&gt;&amp;1 &amp;
+
+# datanode in different data center
+mkdir -p demo/data4
+./weed volume -dir=demo/data4 -max=5 -mserver=localhost:9333 -port=8083 -dataCenter=dc2 -rack=rack3 &gt; node-4.log 2&gt;&amp;1 &amp;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>2.10.5. 简单测试<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p><em>上传文件</em></p>
+<ul class="simple">
+<li>分配文件ID. 文件ID = volume ID + file key + 校验码</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre>$ curl http://localhost:9333/dir/assign
+{&quot;fid&quot;:&quot;27,0498cb603b&quot;,&quot;url&quot;:&quot;127.0.0.1:8081&quot;,&quot;publicUrl&quot;:&quot;localhost:8081&quot;,&quot;count&quot;:1}
+</pre></div>
+</div>
+<p>同时可以指定数据放置策略</p>
+<div class="highlight-python"><div class="highlight"><pre>$ curl http://localhost:9333/dir/assign?replication=011
+{&quot;fid&quot;:&quot;20,05551858e0&quot;,&quot;url&quot;:&quot;127.0.0.1:8081&quot;,&quot;publicUrl&quot;:&quot;localhost:8081&quot;,&quot;count&quot;:1}
+</pre></div>
+</div>
+<p>防止策略参见：<a class="reference external" href="https://code.google.com/p/weed-fs/wiki/RackDataCenterAwareReplication">https://code.google.com/p/weed-fs/wiki/RackDataCenterAwareReplication</a></p>
+<ul>
+<li><dl class="first docutils">
+<dt>上出文件</dt>
+<dd><p class="first last">根据返回的文件ID，构造volume server上传地址，上传数据</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre>$ curl -F @hello.txt http://127.0.0.1:8081/20,05551858e0
+{&quot;size&quot;: 43234}
+</pre></div>
+</div>
+<p><em>下载文件</em></p>
+<p>根据volume id, 从Master查询volume所在server地址</p>
+<div class="highlight-python"><div class="highlight"><pre>$ curl http://localhost:9333/dir/lookup?volumeId=20
+{&quot;volumeId&quot;:&quot;20&quot;,&quot;locations&quot;:
+  [{&quot;url&quot;:&quot;127.0.0.1:8081&quot;,&quot;publicUrl&quot;:&quot;localhost:8081&quot;},
+   {&quot;url&quot;:&quot;127.0.0.1:8080&quot;,&quot;publicUrl&quot;:&quot;localhost:8080&quot;},
+   {&quot;url&quot;:&quot;127.0.0.1:8083&quot;,&quot;publicUrl&quot;:&quot;localhost:8083&quot;}
+  ]
+}
+</pre></div>
+</div>
+<p>客户端可以根据返回volume server地址选择一个（如选择一个同数据中心,最近的）构造下载地址</p>
+<div class="highlight-python"><div class="highlight"><pre>$ curl http://127.0.0.1:8083/20,05551858e0
+</pre></div>
+</div>
+</div>
+<div class="section" id="volume">
+<h2>2.10.6. volume的一致性<a class="headerlink" href="#volume" title="Permalink to this headline">¶</a></h2>
+<p>一个逻辑卷有一个确定数据存放策略，根据存放策略，一个逻辑卷包含一个或者多个逻辑卷。
+怎么保持这些逻辑卷的同步呢？</p>
+<p>现在实现是同步协议。当请求发到一个volume server上之后，
+这个server将数据在转发到这个逻辑卷的其他卷服务器上去，当数据在所有物理卷上都成功之后，才返回给客户端成功。</p>
+<p>这个实现会造成:
+* 一个逻辑卷里面各个物理卷的数据不一致，某些卷里面会与脏数据.
+* 如果一个物理卷不可用的时候，整个逻辑卷都是不可写。</p>
+<p>可以使用raft协议来世实现逻辑卷的一致性。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.10. weed-fs</a><ul>
+<li><a class="reference internal" href="#id1">2.10.1. 项目地址</a></li>
+<li><a class="reference internal" href="#id2">2.10.2. 主要特点</a></li>
+<li><a class="reference internal" href="#id3">2.10.3. 编译</a></li>
+<li><a class="reference internal" href="#id4">2.10.4. 搭建测试集群</a></li>
+<li><a class="reference internal" href="#id5">2.10.5. 简单测试</a></li>
+<li><a class="reference internal" href="#volume">2.10.6. volume的一致性</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="interesting-systems.html"
+                        title="previous chapter">2.9. 有趣的系统</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../hbase/index.html"
+                        title="next chapter">3. HBase实践</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/distributed-system/weed-fs.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../hbase/index.html" title="3. HBase实践"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="interesting-systems.html" title="2.9. 有趣的系统"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >2. 分布式系统</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

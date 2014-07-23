@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.4. vagrant &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="6. 工具链" href="index.html" />
+    <link rel="next" title="6.5. supervisord" href="supervisord.html" />
+    <link rel="prev" title="6.3. phabricator" href="phabricator.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="supervisord.html" title="6.5. supervisord"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="phabricator.html" title="6.3. phabricator"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">6. 工具链</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="vagrant">
+<h1>6.4. vagrant<a class="headerlink" href="#vagrant" title="Permalink to this headline">¶</a></h1>
+<p>vagrant 是一个命令行虚拟机管理工具，他可以非常方便的管理虚拟机
+参考官网: <a class="reference external" href="http://www.vagrantup.com/">http://www.vagrantup.com/</a></p>
+<div class="section" id="id1">
+<h2>6.4.1. 安装<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="virtualbox">
+<h3>6.4.1.1. 安装virtualbox<a class="headerlink" href="#virtualbox" title="Permalink to this headline">¶</a></h3>
+<p>下载virtualbox的最新安装包,
+<a class="reference external" href="https://www.virtualbox.org/wiki/Linux_Downloads">https://www.virtualbox.org/wiki/Linux_Downloads</a> 在centos
+5/6直接用yum安装</p>
+<div class="highlight-python"><div class="highlight"><pre>yum install VirtualBox-4.2
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>6.4.1.2. 安装vagrant<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>下载vagrant安装包：<a class="reference external" href="http://downloads.vagrantup.com/tags/v1.2.4">http://downloads.vagrantup.com/tags/v1.2.4</a>,
+以rpm包为例</p>
+<div class="highlight-python"><div class="highlight"><pre>wget http://files.vagrantup.com/packages/0219bb87725aac28a97c0e924c310cc97831fd9d/vagrant_1.2.4_x86_64.rpm
+rpm -i vagrant_1.2.4_x86_64.rpm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>6.4.2. 使用<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>下载虚拟机模板，vagrant使用的模板叫做box, 模板下载地址
+<a class="reference external" href="http://www.vagrantbox.es">http://www.vagrantbox.es</a></p>
+<div class="highlight-python"><div class="highlight"><pre>vagrant box add precise64 http://files.vagrantup.com/precise64.box
+</pre></div>
+</div>
+<p>初始化</p>
+<div class="highlight-python"><div class="highlight"><pre>mkdir vagrantdemo
+cd vagrantdemo
+vagrant init precise64
+</pre></div>
+</div>
+<p>启动虚拟机</p>
+<div class="highlight-python"><div class="highlight"><pre>vagrant up
+</pre></div>
+</div>
+<p>登录虚拟机</p>
+<div class="highlight-python"><div class="highlight"><pre>vagrant ssh
+</pre></div>
+</div>
+<p>关闭虚拟机</p>
+<div class="highlight-python"><div class="highlight"><pre>vagrant halt
+</pre></div>
+</div>
+<p>其他文档参见：<a class="reference external" href="http://docs.vagrantup.com/v2/">http://docs.vagrantup.com/v2/</a></p>
+</div>
+<div class="section" id="id4">
+<h2>6.4.3. 案例<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vagranthadoop-hbase">
+<h3>6.4.3.1. 使用vagrant在单机上进行hadoop/hbase分布式测试<a class="headerlink" href="#vagranthadoop-hbase" title="Permalink to this headline">¶</a></h3>
+<p>see:
+<a class="reference external" href="http://blog.cloudera.com/blog/2013/04/how-to-use-vagrant-to-set-up-a-virtual-hadoop-cluster/">http://blog.cloudera.com/blog/2013/04/how-to-use-vagrant-to-set-up-a-virtual-hadoop-cluster/</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">6.4. vagrant</a><ul>
+<li><a class="reference internal" href="#id1">6.4.1. 安装</a><ul>
+<li><a class="reference internal" href="#virtualbox">6.4.1.1. 安装virtualbox</a></li>
+<li><a class="reference internal" href="#id2">6.4.1.2. 安装vagrant</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">6.4.2. 使用</a></li>
+<li><a class="reference internal" href="#id4">6.4.3. 案例</a><ul>
+<li><a class="reference internal" href="#vagranthadoop-hbase">6.4.3.1. 使用vagrant在单机上进行hadoop/hbase分布式测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="phabricator.html"
+                        title="previous chapter">6.3. phabricator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="supervisord.html"
+                        title="next chapter">6.5. supervisord</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/toolchains/vagrant.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="supervisord.html" title="6.5. supervisord"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="phabricator.html" title="6.3. phabricator"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >6. 工具链</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

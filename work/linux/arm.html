@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.1. ARM芯片 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="1. Linux系统" href="index.html" />
+    <link rel="next" title="1.2. 学习Linux内核" href="learning-linux-kernel.html" />
+    <link rel="prev" title="1. Linux系统" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="learning-linux-kernel.html" title="1.2. 学习Linux内核"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="1. Linux系统"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">1. Linux系统</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="arm">
+<h1>1.1. ARM芯片<a class="headerlink" href="#arm" title="Permalink to this headline">¶</a></h1>
+<p>最近复习计算机体系结构里面指令集架构时，想以ARM为例，了解指令集的设计。
+先科普一下ARM外围的一些知识。</p>
+<div class="section" id="id1">
+<h2>1.1.1. ARM公司的模式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>ARM(Advanced RISC Machine) 负责指令集设计，没有具体电路
+芯片公司：从ARM公司买授权，生产ARM兼容的芯片。在和其他芯片打包集成，卖给硬件厂商。</p>
+<p>如小米3使用高通的SnapDragon800的芯片，包含krait 400 cpu, Adreno
+330的图像芯片， 调制解调芯片（处理手机芯片的）等等。而krait 400是ARMv7
+兼容芯片。</p>
+<p>参考： <a class="reference external" href="http://en.wikipedia.org/wiki/ARM_architecture">http://en.wikipedia.org/wiki/ARM_architecture</a></p>
+</div>
+<div class="section" id="armarm">
+<h2>1.1.2. ARM公司的ARM芯片内核分类<a class="headerlink" href="#armarm" title="Permalink to this headline">¶</a></h2>
+<p>Cortex-A&nbsp; Cortex-R Cortex-M A: Application
+智能手机，移动计算平台，数字电视等 R: Realtime 工业控制，数字电视 M:
+Microcontrollers 智能测量、人机接口设备、汽车和工业控制系统 参考：
+<a class="reference external" href="http://hi.baidu.com/xuelicheng/item/b896b7d1b7583848fb5768d0">http://hi.baidu.com/xuelicheng/item/b896b7d1b7583848fb5768d0</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.1. ARM芯片</a><ul>
+<li><a class="reference internal" href="#id1">1.1.1. ARM公司的模式</a></li>
+<li><a class="reference internal" href="#armarm">1.1.2. ARM公司的ARM芯片内核分类</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">1. Linux系统</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="learning-linux-kernel.html"
+                        title="next chapter">1.2. 学习Linux内核</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/linux/arm.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="learning-linux-kernel.html" title="1.2. 学习Linux内核"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="1. Linux系统"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >1. Linux系统</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

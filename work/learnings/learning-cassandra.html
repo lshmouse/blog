@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.4. Cansandra初探 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="5. 持续学习" href="index.html" />
+    <link rel="next" title="5.5. 学习Go语言" href="learning-golang.html" />
+    <link rel="prev" title="5.3. 亚马逊云服务" href="learning-aws.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="learning-golang.html" title="5.5. 学习Go语言"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="learning-aws.html" title="5.3. 亚马逊云服务"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">5. 持续学习</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cansandra">
+<h1>5.4. Cansandra初探<a class="headerlink" href="#cansandra" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>5.4.1. 编译<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>先安装jdk7, cassandra要求jdk版本&gt;1.7. why?</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install openjdk-7-jdk7
+</pre></div>
+</div>
+<p>安装和配置ant, maven. 下载ant， maven的二进制包</p>
+<div class="highlight-python"><div class="highlight"><pre>wget http://mirrors.tuna.tsinghua.edu.cn/apache//ant/binaries/apache-ant-1.9.2-bin.zip
+unzip apache-ant-1.9.2-bin.zip
+wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/binaries/apache-maven-3.0.5-bin.zip
+unzip apache-maven-3.0.5-bin.zip
+</pre></div>
+</div>
+<p>将ant，maven导入环境变量，在~/.bashrc添加</p>
+<div class="highlight-python"><div class="highlight"><pre>export MAVEN_HOME=/PATH/apache-ant-1.9.2
+export PATH=$PATH:$MAVEN_HOME/bin/
+
+export ANT_HOME=/PATH/apache-maven-3.0.5
+export PATH=${PATH}:${ANT_HOME}/bin/
+</pre></div>
+</div>
+<p>配置maven的setings.xml文件， 如果不知道这个是何物，请先学习一下maven</p>
+<p>使用ant编译：</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ant</span>
+</pre></div>
+</div>
+<p>将项目导入eclipse工程</p>
+<div class="highlight-python"><div class="highlight"><pre>ant generate-eclipse-files
+</pre></div>
+</div>
+<p>然后使用eclispse导入java项目</p>
+</div>
+<div class="section" id="id2">
+<h2>5.4.2. 本地版启动<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id3">
+<h2>5.4.3. 架构<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://wiki.apache.org/cassandra/ArchitectureInternals">http://wiki.apache.org/cassandra/ArchitectureInternals</a>
+<a class="reference external" href="http://www.slideshare.net/NinGoo/cassandra-4586176">http://www.slideshare.net/NinGoo/cassandra-4586176</a></p>
+<div class="section" id="id4">
+<h3>5.4.3.1. 数据流<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h4>5.4.3.1.1. 写流程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id6">
+<h4>5.4.3.1.2. 读流程<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="hash">
+<h3>5.4.3.2. 容错与一致性hash<a class="headerlink" href="#hash" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h4>5.4.3.2.1. 读修复<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="anti-entropy-node-repair">
+<h4>5.4.3.2.2. Anti-Entropy Node Repair<a class="headerlink" href="#anti-entropy-node-repair" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="hinted-handoff">
+<h4>5.4.3.2.3. 优化:hinted Handoff<a class="headerlink" href="#hinted-handoff" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">5.4. Cansandra初探</a><ul>
+<li><a class="reference internal" href="#id1">5.4.1. 编译</a></li>
+<li><a class="reference internal" href="#id2">5.4.2. 本地版启动</a></li>
+<li><a class="reference internal" href="#id3">5.4.3. 架构</a><ul>
+<li><a class="reference internal" href="#id4">5.4.3.1. 数据流</a><ul>
+<li><a class="reference internal" href="#id5">5.4.3.1.1. 写流程</a></li>
+<li><a class="reference internal" href="#id6">5.4.3.1.2. 读流程</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hash">5.4.3.2. 容错与一致性hash</a><ul>
+<li><a class="reference internal" href="#id7">5.4.3.2.1. 读修复</a></li>
+<li><a class="reference internal" href="#anti-entropy-node-repair">5.4.3.2.2. Anti-Entropy Node Repair</a></li>
+<li><a class="reference internal" href="#hinted-handoff">5.4.3.2.3. 优化:hinted Handoff</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="learning-aws.html"
+                        title="previous chapter">5.3. 亚马逊云服务</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="learning-golang.html"
+                        title="next chapter">5.5. 学习Go语言</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/work/learnings/learning-cassandra.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="learning-golang.html" title="5.5. 学习Go语言"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="learning-aws.html" title="5.3. 亚马逊云服务"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >5. 持续学习</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Shaohui Liu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
