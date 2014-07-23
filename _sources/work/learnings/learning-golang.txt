@@ -14,6 +14,8 @@ Startup
 http://zh-golang.appsp0t.com/doc/ 
 教程：http://tour.golang.tc>
 
+- effective go http://golang.org/doc/effective_go.html
+
 rpc
 ^^^
 http://www.ituring.com.cn/article/39053
