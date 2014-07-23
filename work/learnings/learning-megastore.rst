@@ -39,3 +39,8 @@ BigTable: 存储实际表的数据和事务日志
 单个Entry Group, 读写10ms， 写100-400ms， 取决于跨机房的延时。
 虽然单个Entry Group的写性能比较差，但是一个表可以分为非常多的Entry
 Group，如互联网业务中一个用户一个entry group。总的吞吐量是比较大。
+
+参考
+~~~~
+- http://www.slideshare.net/schubertzhang/learning-from-google-megastore-part1-12149098
+- http://www.slideshare.net/arinto/megastore-providing-scalable-highly-available-storage-for-interactive-services-id2220-presentation
