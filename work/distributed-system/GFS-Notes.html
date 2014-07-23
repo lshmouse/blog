@@ -1,83 +1,173 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.5. 类GFS的分布式文件系统实现要点 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
     
-    <title>2.5. 类GFS的分布式文件系统实现要点 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/>
+        <link rel="up" title="2. 分布式系统" href="index.html"/>
+        <link rel="next" title="2.6. MapReduce 框架实现的一些关键点" href="MapReduce-Notes.html"/>
+        <link rel="prev" title="2.4. 技术道路" href="roads.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
     
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '1.0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html" />
-    <link rel="up" title="2. 分布式系统" href="index.html" />
-    <link rel="next" title="2.6. MapReduce 框架实现的一些关键点" href="MapReduce-Notes.html" />
-    <link rel="prev" title="2.4. 技术道路" href="roads.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="MapReduce-Notes.html" title="2.6. MapReduce 框架实现的一些关键点"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="roads.html" title="2.4. 技术道路"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">2. 分布式系统</a> &raquo;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="roads.html"
-                        title="previous chapter">2.4. 技术道路</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="MapReduce-Notes.html"
-                        title="next chapter">2.6. MapReduce 框架实现的一些关键点</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../../_sources/work/distributed-system/GFS-Notes.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> Shaohui Liu's Blog</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
       </div>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">1. Linux系统</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/arm.html">1.1. ARM芯片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/learning-linux-kernel.html">1.2. 学习Linux内核</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux-file-system.html">1.3. Linux文件系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux-io-arch.html">1.4. IO体系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux-cmds.html">1.5. Linux常用命令</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. 分布式系统</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="papers.html">2.1. 分布式系统相关论文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consistency-model.html">2.2. 一致性模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NumbersEveryoneShouldKnown.html">2.3. Numbers Everyone Should Known from Dean 2009</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roads.html">2.4. 技术道路</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.5. 类GFS的分布式文件系统实现要点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MapReduce-Notes.html">2.6. MapReduce 框架实现的一些关键点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BigTable-Notes.html">2.7. 类BigTable系统实现上的一些要点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wisdoms.html">2.8. IT智慧语录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interesting-systems.html">2.9. 有趣的系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="weed-fs.html">2.10. weed-fs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hbase/index.html">3. HBase实践</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hbase/hbase_issues.html">3.1. Hbase 重要的issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hbase/valuable_resources.html">3.2. HBase学习资源</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">4. Hadoop实践</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/company.html">4.1. 基于Hadoop生态系统的创业公司</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../learnings/index.html">5. 持续学习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-HQueue.html">5.1. HQueue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-LVM.html">5.2. LVM逻辑卷管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-aws.html">5.3. 亚马逊云服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-cassandra.html">5.4. Cansandra初探</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-golang.html">5.5. 学习Go语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-megastore.html">5.6. MegaStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-yarn.html">5.7. Hadoop YARN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-paxos.html">5.8. Paxos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/nameservice.html">5.9. 名字服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/opencourse.html">5.10. 开发课程推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/opensources.html">5.11. 有趣开源项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/readinglist.html">5.12. Reading List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/userful-links-1.html">5.13. 链接推荐1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../toolchains/index.html">6. 工具链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/git.html">6.1. git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/maven-plugins.html">6.2. Maven插件推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/phabricator.html">6.3. phabricator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/vagrant.html">6.4. vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/supervisord.html">6.5. supervisord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/saltstack.html">6.6. saltstack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/jekyll.html">6.7. jekyll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/compile-jvm.html">6.8. JVM编译</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/dev-tools.html">6.9. 开发工具大杂烩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/good-apps.html">6.10. 好用的Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/dev-workflow.html">6.11. 开发流程的探索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/maven-sphinx.html">6.12. Maven sphinx 插件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">7. 算法竞赛</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">8. 推荐的链接</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../links.html#id2">8.1. 博客</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../links.html#id4">8.2. 好书推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../links.html#id7">8.3. 其他</a></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Shaohui Liu's Blog</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">2. 分布式系统</a> &raquo;</li>
+      
+    <li>2.5. 类GFS的分布式文件系统实现要点</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/work/distributed-system/GFS-Notes.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
             
   <div class="section" id="gfs">
 <h1>2.5. 类GFS的分布式文件系统实现要点<a class="headerlink" href="#gfs" title="Permalink to this headline">¶</a></h1>
@@ -85,29 +175,67 @@
 
 
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MapReduce-Notes.html" class="btn btn-neutral float-right" title="2.6. MapReduce 框架实现的一些关键点">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="roads.html" class="btn btn-neutral" title="2.4. 技术道路"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Shaohui Liu.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="MapReduce-Notes.html" title="2.6. MapReduce 框架实现的一些关键点"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="roads.html" title="2.4. 技术道路"
-             >previous</a> |</li>
-        <li><a href="../../index.html">Shaohui Liu&#39;s Blog 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="index.html" >2. 分布式系统</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2014, Shaohui Liu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
