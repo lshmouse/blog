@@ -6,4 +6,5 @@ HBase实践
    :maxdepth: 1
    
    hbase_issues
+   how-to-learning-hadoop-hbase
    valuable_resources

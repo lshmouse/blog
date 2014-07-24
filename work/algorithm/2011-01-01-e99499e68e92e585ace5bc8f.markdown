@@ -1,23 +1,14 @@
----
-author: lshmouse
-comments: true
-date: 2011-01-01 01:01:01+00:00
-layout: post
-title: 错排公式
-tags: [algorithm, math]
-categories: [algorithm]
----
+错排公式
+=================
 
+基本问题
+-------------
 N对事件的错排公式：  
-
   f[0]=0;  
-
   f[1]=0;  
-
   f[2]=1;  
-
   f[3]=2;  
+  f[k]=(k-1)(f[k-1]+f[k-2])  
 
- f[k]=(k-1)(f[k-1]+f[k-2])  
-
-今天才看到的感觉蛮有用的！ 
+实际问题
+--------------
