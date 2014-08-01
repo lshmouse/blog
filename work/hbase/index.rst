@@ -8,3 +8,4 @@ HBase实践
    hbase_issues
    how-to-learning-hadoop-hbase
    valuable_resources
+   patches 
