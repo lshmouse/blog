@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1. Hbase 重要的issues &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+  <title>Compile HBase &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
   
 
   
@@ -28,10 +28,7 @@
   
 
   
-    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/>
-        <link rel="up" title="3. HBase实践" href="index.html"/>
-        <link rel="next" title="3.2. How to learning Hadoop/HBase" href="how-to-learning-hadoop-hbase.html"/>
-        <link rel="prev" title="3. HBase实践" href="index.html"/> 
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -60,7 +57,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul class="current">
+            <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">1. Linux系统</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux/arm.html">1.1. ARM芯片</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/learning-linux-kernel.html">1.2. 学习Linux内核</a></li>
@@ -82,8 +79,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../distributed-system/weed-fs.html">2.10. weed-fs</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. HBase实践</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.1. Hbase 重要的issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">3. HBase实践</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hbase_issues.html">3.1. Hbase 重要的issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="how-to-learning-hadoop-hbase.html">3.2. How to learning Hadoop/HBase</a></li>
 <li class="toctree-l2"><a class="reference internal" href="valuable_resources.html">3.3. HBase学习资源</a></li>
 </ul>
@@ -165,12 +162,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">3. HBase实践</a> &raquo;</li>
-      
-    <li>3.1. Hbase 重要的issues</li>
+    <li>Compile HBase</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../../_sources/work/hbase/hbase_issues.txt" rel="nofollow"> View page source</a>
+          <a href="../../_sources/work/hbase/compile-hbase.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -178,61 +173,13 @@
 </div>
           <div role="main">
             
-  <div class="section" id="hbase-issues">
-<h1>3.1. Hbase 重要的issues<a class="headerlink" href="#hbase-issues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="too-many-hlogs">
-<h2>3.1.1. Too many Hlogs<a class="headerlink" href="#too-many-hlogs" title="Permalink to this headline">¶</a></h2>
-<p>Reason: diff regions with diff loads. And the region with little load will
-block the delete of hlogs.</p>
-<p>Solution: (1) A backend thread to cleanup the entries in the hlogs which had
-been flushed to fileSytem.</p>
-</div>
-<div class="section" id="hbase-compaction">
-<h2>3.1.2. Hbase Compaction<a class="headerlink" href="#hbase-compaction" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Tier based compaction: <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-6371">https://issues.apache.org/jira/browse/HBASE-6371</a></li>
-<li>upport level compaction: <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7519">https://issues.apache.org/jira/browse/HBASE-7519</a></li>
-<li>Support stripe compaction: <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7667">https://issues.apache.org/jira/browse/HBASE-7667</a></li>
-</ul>
-</div>
-<div class="section" id="hlog-split">
-<h2>3.1.3. Hlog split优化<a class="headerlink" href="#hlog-split" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7006">https://issues.apache.org/jira/browse/HBASE-7006</a></p>
-</div>
-<div class="section" id="namespace">
-<h2>3.1.4. Namespace<a class="headerlink" href="#namespace" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8015">https://issues.apache.org/jira/browse/HBASE-8015</a></p>
-</div>
-<div class="section" id="cloudera-blog">
-<h2>3.1.5. cloudera blog<a class="headerlink" href="#cloudera-blog" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/06/hbase-write-path/">http://blog.cloudera.com/blog/2012/06/hbase-write-path/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2013/04/how-scaling-really-works-in-apache-hbase/">http://blog.cloudera.com/blog/2013/04/how-scaling-really-works-in-apache-hbase/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2013/01/apache-hbase-internals-locking-and-multiversion-concurrency-control/">http://blog.cloudera.com/blog/2013/01/apache-hbase-internals-locking-and-multiversion-concurrency-control/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/07/hbase-log-splitting/">http://blog.cloudera.com/blog/2012/07/hbase-log-splitting/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/06/online-hbase-backups-with-copytable-2/">http://blog.cloudera.com/blog/2012/06/online-hbase-backups-with-copytable-2/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/01/caching-in-hbase-slabcache/">http://blog.cloudera.com/blog/2012/01/caching-in-hbase-slabcache/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2011/02/avoiding-full-gcs-in-hbase-with-memstore-local-allocation-buffers-part-1/">http://blog.cloudera.com/blog/2011/02/avoiding-full-gcs-in-hbase-with-memstore-local-allocation-buffers-part-1/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/06/hbase-io-hfile-input-output/">http://blog.cloudera.com/blog/2012/06/hbase-io-hfile-input-output/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/07/hbase-replication-overview-2/">http://blog.cloudera.com/blog/2012/07/hbase-replication-overview-2/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/08/hbase-replication-operational-overview/">http://blog.cloudera.com/blog/2012/08/hbase-replication-operational-overview/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/11/apache-hbase-assignmentmanager-improvements/">http://blog.cloudera.com/blog/2012/11/apache-hbase-assignmentmanager-improvements/</a></li>
-</ul>
-</div>
+  <div class="section" id="compile-hbase">
+<h1>Compile HBase<a class="headerlink" href="#compile-hbase" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="how-to-learning-hadoop-hbase.html" class="btn btn-neutral float-right" title="3.2. How to learning Hadoop/HBase">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral" title="3. HBase实践"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

@@ -3,7 +3,9 @@
 
 .. toctree::
    :maxdepth: 1
-
+   
+   tmux
+   linux-monitor-tools
    learning-HQueue
    learning-LVM
    learning-aws

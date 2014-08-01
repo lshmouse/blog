@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1. Hbase 重要的issues &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+  <title>3.2. How to learning Hadoop/HBase &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   
     <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/>
         <link rel="up" title="3. HBase实践" href="index.html"/>
-        <link rel="next" title="3.2. How to learning Hadoop/HBase" href="how-to-learning-hadoop-hbase.html"/>
-        <link rel="prev" title="3. HBase实践" href="index.html"/> 
+        <link rel="next" title="3.3. HBase学习资源" href="valuable_resources.html"/>
+        <link rel="prev" title="3.1. Hbase 重要的issues" href="hbase_issues.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -83,8 +83,8 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">3. HBase实践</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.1. Hbase 重要的issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how-to-learning-hadoop-hbase.html">3.2. How to learning Hadoop/HBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hbase_issues.html">3.1. Hbase 重要的issues</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.2. How to learning Hadoop/HBase</a></li>
 <li class="toctree-l2"><a class="reference internal" href="valuable_resources.html">3.3. HBase学习资源</a></li>
 </ul>
 </li>
@@ -167,10 +167,10 @@
       
           <li><a href="index.html">3. HBase实践</a> &raquo;</li>
       
-    <li>3.1. Hbase 重要的issues</li>
+    <li>3.2. How to learning Hadoop/HBase</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../../_sources/work/hbase/hbase_issues.txt" rel="nofollow"> View page source</a>
+          <a href="../../_sources/work/hbase/how-to-learning-hadoop-hbase.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -178,46 +178,48 @@
 </div>
           <div role="main">
             
-  <div class="section" id="hbase-issues">
-<h1>3.1. Hbase 重要的issues<a class="headerlink" href="#hbase-issues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="too-many-hlogs">
-<h2>3.1.1. Too many Hlogs<a class="headerlink" href="#too-many-hlogs" title="Permalink to this headline">¶</a></h2>
-<p>Reason: diff regions with diff loads. And the region with little load will
-block the delete of hlogs.</p>
-<p>Solution: (1) A backend thread to cleanup the entries in the hlogs which had
-been flushed to fileSytem.</p>
+  <div class="section" id="how-to-learning-hadoop-hbase">
+<h1>3.2. How to learning Hadoop/HBase<a class="headerlink" href="#how-to-learning-hadoop-hbase" title="Permalink to this headline">¶</a></h1>
+<p>这是一篇给网友的回信。他看了我在China Hadop
+Summit上《小米Hbase实践》分享之后，来信咨询怎么学习Hadoop/Hbase?</p>
+<p>从我自己的经历看, 学习Hadoop/Hbase步骤如下：</p>
+<div class="section" id="id1">
+<h2>3.2.1. 论文<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>先看一下google的GFS/Mapreduce/BIgtable三篇论文(请看英文版)。Hadoop/Hbase都是从
+google这三篇 论文来的。
+三篇论文很经典，也很简练，很多重要的地方一笔带过。需要后来看书，看代码的时候，回过头来在看论文，在琢磨一遍。
+前三遍看得时候可能看不是很懂，只能有一个大概的认识。不要气馁，论文和后面的实践结合，才能慢慢琢磨出作者所要表达的意思。
+这三篇论文，过一段时间看一遍，都会有新的收获的</p>
 </div>
-<div class="section" id="hbase-compaction">
-<h2>3.1.2. Hbase Compaction<a class="headerlink" href="#hbase-compaction" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Tier based compaction: <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-6371">https://issues.apache.org/jira/browse/HBASE-6371</a></li>
-<li>upport level compaction: <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7519">https://issues.apache.org/jira/browse/HBASE-7519</a></li>
-<li>Support stripe compaction: <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7667">https://issues.apache.org/jira/browse/HBASE-7667</a></li>
-</ul>
+<div class="section" id="hadoop-hbase">
+<h2>3.2.2. Hadoop/Hbase书<a class="headerlink" href="#hadoop-hbase" title="Permalink to this headline">¶</a></h2>
+<p>推荐&lt;&gt;, &lt;&gt;
+介绍Hadoop/Hbase具体实现和实践的书，熟悉Hadoop/Hbase一些大的实现方法和原理。
+这两本书可以先看一遍，很多不了解，打上问号，在后面实践的时候，重新回过头来看，加深理解。这两本书也是需要看很多遍的。</p>
 </div>
-<div class="section" id="hlog-split">
-<h2>3.1.3. Hlog split优化<a class="headerlink" href="#hlog-split" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7006">https://issues.apache.org/jira/browse/HBASE-7006</a></p>
+<div class="section" id="id2">
+<h2>3.2.3. 实践<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>最好工作中需要使用到这些东西。看书可能很表面或者肤浅，很难看出深层次的东西，为什么这么实现而不那么实现。
+从实际问题出发，去尝试解决实际问题， 从实际中学习。
+这一步我觉得环境很重要，最好能到一个做这方面工作的team，一方面也许有人指点，另一方面也有人一起讨论，进步会更快一些。学的东西不
+用，很快就会荒废掉的。</p>
 </div>
-<div class="section" id="namespace">
-<h2>3.1.4. Namespace<a class="headerlink" href="#namespace" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8015">https://issues.apache.org/jira/browse/HBASE-8015</a></p>
+<div class="section" id="id3">
+<h2>3.2.4. 源代码<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>代码层面，参与社区开发。从第三步开始需要开始关注代码实现的具体细节了，虽然大的原理都一样，但是工程实现上千差万别。最好的方
+式，参与到社区开发里面。
+实践中遇到，看代码，找到问题，修复，然后提交社区，和社区沟通。</p>
 </div>
-<div class="section" id="cloudera-blog">
-<h2>3.1.5. cloudera blog<a class="headerlink" href="#cloudera-blog" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/06/hbase-write-path/">http://blog.cloudera.com/blog/2012/06/hbase-write-path/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2013/04/how-scaling-really-works-in-apache-hbase/">http://blog.cloudera.com/blog/2013/04/how-scaling-really-works-in-apache-hbase/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2013/01/apache-hbase-internals-locking-and-multiversion-concurrency-control/">http://blog.cloudera.com/blog/2013/01/apache-hbase-internals-locking-and-multiversion-concurrency-control/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/07/hbase-log-splitting/">http://blog.cloudera.com/blog/2012/07/hbase-log-splitting/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/06/online-hbase-backups-with-copytable-2/">http://blog.cloudera.com/blog/2012/06/online-hbase-backups-with-copytable-2/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/01/caching-in-hbase-slabcache/">http://blog.cloudera.com/blog/2012/01/caching-in-hbase-slabcache/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2011/02/avoiding-full-gcs-in-hbase-with-memstore-local-allocation-buffers-part-1/">http://blog.cloudera.com/blog/2011/02/avoiding-full-gcs-in-hbase-with-memstore-local-allocation-buffers-part-1/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/06/hbase-io-hfile-input-output/">http://blog.cloudera.com/blog/2012/06/hbase-io-hfile-input-output/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/07/hbase-replication-overview-2/">http://blog.cloudera.com/blog/2012/07/hbase-replication-overview-2/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/08/hbase-replication-operational-overview/">http://blog.cloudera.com/blog/2012/08/hbase-replication-operational-overview/</a></li>
-<li><a class="reference external" href="http://blog.cloudera.com/blog/2012/11/apache-hbase-assignmentmanager-improvements/">http://blog.cloudera.com/blog/2012/11/apache-hbase-assignmentmanager-improvements/</a></li>
-</ul>
+<div class="section" id="id4">
+<h2>3.2.5. Hadoop/Hbase 生态系统.<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Hadoop现在已经是大的生态的系统了，外围有很多系统如hive,
+sqoop等等，了解这些系统对在公司实施Hadoop/Hbase很有帮忙。</p>
+</div>
+<div class="section" id="beyond-hadoop-hbase">
+<h2>3.2.6. Beyond Hadoop/Hbase.<a class="headerlink" href="#beyond-hadoop-hbase" title="Permalink to this headline">¶</a></h2>
+<p>在对Hadoop/Hbase很了解情况下，可以关注一些google这个体系之外的系统，比如Amazon
+Dynamo等，对比他们应用场景和系统设计的考虑，</p>
+<p>前四步，比较重要的，后两步看以后发展了。</p>
 </div>
 </div>
 
@@ -227,10 +229,10 @@ been flushed to fileSytem.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="how-to-learning-hadoop-hbase.html" class="btn btn-neutral float-right" title="3.2. How to learning Hadoop/HBase">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="valuable_resources.html" class="btn btn-neutral float-right" title="3.3. HBase学习资源">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="3. HBase实践"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="hbase_issues.html" class="btn btn-neutral" title="3.1. Hbase 重要的issues"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

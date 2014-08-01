@@ -21,6 +21,7 @@ Welcome to Shaohui Liu's Blog
    work/toolchains/index
    work/algorithm/index
    work/links
+   work/project
    
 生活
 --------------------
