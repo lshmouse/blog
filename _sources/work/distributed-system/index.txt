@@ -14,3 +14,4 @@
    Wisdoms
    interesting-systems
    weed-fs
+   online-storage
