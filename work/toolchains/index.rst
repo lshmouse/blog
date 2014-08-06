@@ -16,3 +16,4 @@
    good-apps
    dev-workflow
    maven-sphinx
+   git-cmds
