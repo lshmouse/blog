@@ -14,7 +14,7 @@ blog https://github.com/lshmouse/blog
 使用rst格式编写文档，使用sphinx生成页面，部署在github pages上
 
 
-类S3d对象存储
+类S3对象存储
 --------------
 rockstor https://github.com/lshmouse/rockstor
 
