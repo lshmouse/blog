@@ -14,7 +14,7 @@ blog https://github.com/lshmouse/blog
 使用rst格式编写文档，使用sphinx生成页面，部署在github pages上
 
 
-类S3d对象存储
+类Amazon S3的对象存储
 --------------
 rockstor https://github.com/lshmouse/rockstor
 
@@ -26,4 +26,5 @@ rockstor https://github.com/lshmouse/rockstor
 codetemplate https://github.com/lshmouse/codetemplate
 
 java实现的ACM竞赛中使用的基本算法和数据结构的模板
+
 
