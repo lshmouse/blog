@@ -7,8 +7,10 @@ S3, DynamoDB等，来验证原型的准确性，并找出原型上的bugs
 Specification是对一个系统模型的描述, 系统模型主要包含状态和转移两部分.
 TLA+就是一种描述Specification的语言， 以及对模型检测.
 
-安装
+安装工具包
 -------------------
+源代码：http://tlaplus.codeplex.com/
+
 下载https://tla.msr-inria.inria.fr/tlatoolbox/products/
 
 Ubuntu上启动:
@@ -38,6 +40,10 @@ Check 条件:
 
 
 To be continued
+
+例子
+----------------------------
+raft protocal https://github.com/wayoutmind/melee/blob/master/docs/
 
 参考
 -------
