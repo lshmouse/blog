@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.8. MegaStore &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+  <title>5.15. 链接推荐1 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   
     <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/>
         <link rel="up" title="5. 持续学习" href="index.html"/>
-        <link rel="next" title="5.9. Hadoop YARN" href="learning-yarn.html"/>
-        <link rel="prev" title="5.7. 学习Go语言" href="learning-golang.html"/> 
+        <link rel="next" title="5.16. 调试网络问题" href="debug-network.html"/>
+        <link rel="prev" title="5.14. Reading List" href="readinglist.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -104,14 +104,15 @@
 <li class="toctree-l2"><a class="reference internal" href="learning-aws.html">5.5. 亚马逊云服务</a></li>
 <li class="toctree-l2"><a class="reference internal" href="learning-cassandra.html">5.6. Cansandra初探</a></li>
 <li class="toctree-l2"><a class="reference internal" href="learning-golang.html">5.7. 学习Go语言</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">5.8. MegaStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="learning-megastore.html">5.8. MegaStore</a></li>
 <li class="toctree-l2"><a class="reference internal" href="learning-yarn.html">5.9. Hadoop YARN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="learning-paxos.html">5.10. Paxos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nameservice.html">5.11. 名字服务</a></li>
 <li class="toctree-l2"><a class="reference internal" href="opencourse.html">5.12. 开发课程推荐</a></li>
 <li class="toctree-l2"><a class="reference internal" href="opensources.html">5.13. 有趣开源项目</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readinglist.html">5.14. Reading List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userful-links-1.html">5.15. 链接推荐1</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.15. 链接推荐1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug-network.html">5.16. 调试网络问题</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../toolchains/index.html">6. 工具链</a><ul>
@@ -176,10 +177,10 @@
       
           <li><a href="index.html">5. 持续学习</a> &raquo;</li>
       
-    <li>5.8. MegaStore</li>
+    <li>5.15. 链接推荐1</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../../_sources/work/learnings/learning-megastore.txt" rel="nofollow"> View page source</a>
+          <a href="../../_sources/work/learnings/userful-links.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -187,50 +188,45 @@
 </div>
           <div role="main">
             
-  <div class="section" id="megastore">
-<h1>5.8. MegaStore<a class="headerlink" href="#megastore" title="Permalink to this headline">¶</a></h1>
-<p>今天组内大神分享了google MegaStore的设计,
-先把自己理解了部分记录下来，以后在对照论文，加深理解.</p>
-<p>MegaStore是google构建在bigtable之上跨数据中心，支持事务，支持sql的分布式数据库方案</p>
-<div class="section" id="id1">
-<h2>5.8.1. 基本架构<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>MegaStore library: MegaStore客户端库，方便用户使用megaStore Replication
-Manager: 与一个数据中心的BigTable对应，负责管理 Coordinator:
-负责本replica那些entry groups是最新。</p>
-<p>在Current Read时，对于当前写的Entry Group, 当前的Replica是最新的， Current
-Read就可以直接本地读。 如果不是最新的Current
-Read时候，需要Apply没有完成的事务日志，使得当前当前Replica达到最新。</p>
-<p>BigTable: 存储实际表的数据和事务日志</p>
-</div>
-<div class="section" id="id2">
-<h2>5.8.2. 数据模型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id3">
-<h2>5.8.3. 写流程<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="id1">
+<h1>5.15. 链接推荐1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
-<li>发起一个Current Read, 获取当前操作日志的postion/timestamp</li>
-<li>发起一次paxos的写操作，将当前的操作日志写到BigTable上Enntry
-Group的Root Row的操作日志列上</li>
-<li>对于未正常返回的</li>
-<li>异步将当前操作写到bigtable的数据行上。</li>
+<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-lxc-containers/#resources">介绍LinuxContainer和Cgroup文章：</a>
+主要用于轻量级的虚拟化，与虚拟机比较：资源利用率比较高，但是隔离效果没有虚拟机好，现在linux内核支持cpu和内存的隔离，可能还需要网络，和磁盘读写的隔离。</li>
+<li>关于GFS设计的一个访谈：<a class="reference external" href="http://queue.acm.org/detail.cfm?id=1594206">GFS: Evolution on
+Fast-forward</a>。从这篇访谈里面可以了解GFS的设计初衷，思路，以及面临的问题，GFS不是万能的，他也只是适合特定的场景。</li>
+<li>一个在线合作编辑的网站：<a class="reference external" href="http://collabedit.com/">http://collabedit.com/</a>。
+特点在于支持多种语言，并且有语法高亮，速度也不错，前段时间用于电话面试，效果还行。</li>
+<li><a class="reference external" href="http://dongxicheng.org/mapreduce/hadoop-terasort-analyse/">Hadoop中TeraSort算法分析</a>。讲的比较清晰，详细。但是要做到yahoo做的hadoop
+的teresort
+benchmark的62s，还是做了特殊的优化的，有想去可以搜索一下，对这些优化的理解可能进一步提高你对mapreduc框架的理解。最后是sort
+benchmark的网站，有兴趣看一看：<a class="reference external" href="http://sortbenchmark.org/">http://sortbenchmark.org/</a></li>
+<li>一个开源的codereview平台：<a class="reference external" href="http://code.google.com/p/rietveld/">rietveld</a>。
+我们team一直在用，对保证代码质量还是很有帮助的。另附：<a class="reference external" href="http://code.google.com/p/google-styleguide/">google-styleguide</a>
+因为开发c++多一些，对c++ google
+style还是很佩服的，里面的要求是很有道理的。对于c++，如果你不想看英文：推荐`http://code.google.com/p/zh-google-styleguide/ &lt;<a class="reference external" href="http://code.google.com/p/zh-google-styleguide/">http://code.google.com/p/zh-google-styleguide/</a>&gt;`_
+或者直接看这里：<a class="reference external" href="http://codinn.com/projects/google-cpp-styleguide/view/">http://codinn.com/projects/google-cpp-styleguide/view/</a>
+不仅将规范还将为什么，很佩服。</li>
+<li>编程基本操作的奇巧淫技
+：<a class="reference external" href="http://aggregate.ee.engr.uky.edu/MAGIC/">http://aggregate.ee.engr.uky.edu/MAGIC/</a>。
+比如说不用比较求两个数的最小值，
+快速判断一个数是否是2的幂，还是很有趣的。</li>
+<li>分布式操作系统condor：<a class="reference external" href="http://www.cs.wisc.edu/condor/">http://www.cs.wisc.edu/condor/</a>。
+我现在在用类似的一个系统，这个系统统一管理集群的cpu，内存，磁盘等等资源，按照作业需求分配，提供自动的调度和容错，虽然在一些问题如分布式debug，分布式测试等方面不是特别好，但是这将是一个大趋势，将大大提高机器资源的利用率（一般web2.0网站的机器利用率可能30%都不到），并且让开发者从机器上解放出来。</li>
+<li>Django book
+中文翻译：<a class="reference external" href="http://djangobook.py3k.cn/">http://djangobook.py3k.cn/</a>。
+一个很好的Django文档翻译，一直不喜欢做web，前段时间不得不做一个性能分析的展示页面,
+开始学习和使用Django，感觉很好，把web开发者从繁琐的设置中解脱出来。</li>
+<li>Hadoop
+mapreduce框架中文教程：<a class="reference external" href="http://hadoop.apache.org/common/docs/r0.20.0/cn/mapred_tutorial.html">http://hadoop.apache.org/common/docs/r0.20.0/cn/mapred_tutorial.html</a>。
+对hadoop
+mapreduce的介绍的很详细，很多细节只有你自己去开发之后才能领略到他设计的巧妙。当然如果对mapreduce不了解的话请先看`google的论文 &lt;<a class="reference external" href="http://static.googleusercontent.com/external_content/untrusted_dlcp/labs.google.com/en//papers/mapreduce-osdi04.pdf">http://static.googleusercontent.com/external_content/untrusted_dlcp/labs.google.com/en//papers/mapreduce-osdi04.pdf</a>&gt;`_.
+中文翻译也还好：<a class="reference external" href="http://blog.csdn.net/active1001/article/details/1675920">http://blog.csdn.net/active1001/article/details/1675920</a></li>
+<li>Buildbot
+一个开源持续集成平台：<a class="reference external" href="http://trac.buildbot.net/">http://trac.buildbot.net/</a>。
+Python写的，可扩展性比较强，chrome开发就是用的buildbot。持续集成可以减少开发者在运行测试上浪费的时间，通过自己配置，定期自动执行单元测试，集成测试以及回归测试等，保证项目可用性。appache开源了`hudson &lt;<a class="reference external" href="http://hudson-ci.org/">http://hudson-ci.org/</a>&gt;`_：,
+java写的公司内部在使用。</li>
 </ol>
-</div>
-<div class="section" id="id4">
-<h2>5.8.4. 读流程<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id5">
-<h2>5.8.5. 性能<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>单个Entry Group, 读写10ms， 写100-400ms， 取决于跨机房的延时。
-虽然单个Entry Group的写性能比较差，但是一个表可以分为非常多的Entry
-Group，如互联网业务中一个用户一个entry group。总的吞吐量是比较大。</p>
-</div>
-<div class="section" id="id6">
-<h2>5.8.6. 参考<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://www.slideshare.net/schubertzhang/learning-from-google-megastore-part1-12149098">http://www.slideshare.net/schubertzhang/learning-from-google-megastore-part1-12149098</a></li>
-<li><a class="reference external" href="http://www.slideshare.net/arinto/megastore-providing-scalable-highly-available-storage-for-interactive-services-id2220-presentation">http://www.slideshare.net/arinto/megastore-providing-scalable-highly-available-storage-for-interactive-services-id2220-presentation</a></li>
-</ul>
-</div>
 </div>
 
 
@@ -239,10 +235,10 @@ Group，如互联网业务中一个用户一个entry group。总的吞吐量是�
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="learning-yarn.html" class="btn btn-neutral float-right" title="5.9. Hadoop YARN">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="debug-network.html" class="btn btn-neutral float-right" title="5.16. 调试网络问题">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="learning-golang.html" class="btn btn-neutral" title="5.7. 学习Go语言"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="readinglist.html" class="btn btn-neutral" title="5.14. Reading List"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

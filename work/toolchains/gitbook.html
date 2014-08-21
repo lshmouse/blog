@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>持续部署 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+  <title>6.14. GitBook &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
   
 
   
@@ -28,7 +28,10 @@
   
 
   
-    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/> 
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/>
+        <link rel="up" title="6. 工具链" href="index.html"/>
+        <link rel="next" title="7. 算法竞赛" href="../algorithm/index.html"/>
+        <link rel="prev" title="6.13. Git 基本操作" href="git-cmds.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -57,7 +60,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">1. Linux系统</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux/arm.html">1.1. ARM芯片</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/learning-linux-kernel.html">1.2. 学习Linux内核</a></li>
@@ -111,7 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../learnings/userful-links-1.html">5.15. 链接推荐1</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">6. 工具链</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. 工具链</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="git.html">6.1. git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="maven-plugins.html">6.2. Maven插件推荐</a></li>
 <li class="toctree-l2"><a class="reference internal" href="phabricator.html">6.3. phabricator</a></li>
@@ -125,7 +128,7 @@
 <li class="toctree-l2"><a class="reference internal" href="dev-workflow.html">6.11. 开发流程的探索</a></li>
 <li class="toctree-l2"><a class="reference internal" href="maven-sphinx.html">6.12. Maven sphinx 插件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git-cmds.html">6.13. Git 基本操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitbook.html">6.14. GitBook</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">6.14. GitBook</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">7. 算法竞赛</a><ul>
@@ -171,10 +174,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>持续部署</li>
+          <li><a href="index.html">6. 工具链</a> &raquo;</li>
+      
+    <li>6.14. GitBook</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../../_sources/work/toolchains/deploy.txt" rel="nofollow"> View page source</a>
+          <a href="../../_sources/work/toolchains/gitbook.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -182,22 +187,116 @@
 </div>
           <div role="main">
             
-  <div class="section" id="id1">
-<h1>持续部署<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="quadron">
-<h2>quadron<a class="headerlink" href="#quadron" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.gosquadron.com/">http://www.gosquadron.com/</a></p>
-<p>这个工具很赞，稍后会写一个文章专门介绍</p>
+  <div class="section" id="gitbook">
+<h1>6.14. GitBook<a class="headerlink" href="#gitbook" title="Permalink to this headline">¶</a></h1>
+<p>GitBook是一个命令行工具（Node.js库） 借用该工具使用Github/Git和Markdown, 可以来来制作精美的图书。
+GitBook支持输出多种文档格式： 静态站点(可以托管在github gh-pages上)， pdf，电子书等等</p>
+<div class="section" id="id1">
+<h2>6.14.1. 安装<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>安装: nodejs</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install node
+</pre></div>
 </div>
-<div class="section" id="ansible">
-<h2>ansible<a class="headerlink" href="#ansible" title="Permalink to this headline">¶</a></h2>
-<p>see: <a class="reference external" href="http://www.ansible.com">http://www.ansible.com</a></p>
+<p>安装: gitbook库</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo npm install -g gitbook
+</pre></div>
+</div>
+<p>测试gitbook 命令:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">gitbook</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="startup">
+<h2>6.14.2. Startup<a class="headerlink" href="#startup" title="Permalink to this headline">¶</a></h2>
+<p>使用GitBook制作电子书，必备两个文件：README.md和SUMMARY.md。
+README.md多为电子书的简介内容，SUMMARY.md用来定义电子书章节结构，如：</p>
+<p>SUMMARY.md例子:</p>
+<div class="highlight-python"><div class="highlight"><pre># Summary
+
+* [chapter 1](chapter1/README.md)
+    * [Lesson 1](chapter1/lesson1.md)
+    * [Lesson 2](chapter1/lesson2.md)
+</pre></div>
+</div>
+<p>初始化git项目:</p>
+<div class="highlight-python"><div class="highlight"><pre>gitbook init
+</pre></div>
+</div>
+<p>使用gitbook编译:</p>
+<div class="highlight-python"><div class="highlight"><pre>gitbook build
+</pre></div>
+</div>
+<p>本地查看电子书:</p>
+<div class="highlight-python"><div class="highlight"><pre>gitbook serve
+</pre></div>
+</div>
+<p>浏览器打开http://localhost:4000/即可查看生成的电子书</p>
+<p>生成pdf</p>
+<div class="highlight-python"><div class="highlight"><pre>gitbook pdf
+</pre></div>
+</div>
+<p>demo 参见： <a class="reference external" href="https://github.com/lshmouse/gitbook-demo">https://github.com/lshmouse/gitbook-demo</a></p>
+</div>
+<div class="section" id="gitbook-io">
+<h2>6.14.3. 发布到gitbook.io上<a class="headerlink" href="#gitbook-io" title="Permalink to this headline">¶</a></h2>
+<p>在gitbook.io上创建账户和一本电子书，例如用户是username, 电子书是: demo</p>
+<p>将本地电子书关联到远程</p>
+<div class="highlight-python"><div class="highlight"><pre>gitbook git:remote . username/demo
+</pre></div>
+</div>
+<p>发布电子书</p>
+<div class="highlight-python"><div class="highlight"><pre>gitbook publish
+</pre></div>
+</div>
+<p>查看电子书: <a class="reference external" href="http://usename.gitbooks.io/demo/">http://usename.gitbooks.io/demo/</a></p>
+</div>
+<div class="section" id="github-pages">
+<h2>6.14.4. 发布到github pages上<a class="headerlink" href="#github-pages" title="Permalink to this headline">¶</a></h2>
+<p>创建或者clone一个gh-pages分支</p>
+<div class="highlight-python"><div class="highlight"><pre>mkdir .tmp
+cd .tmp
+git clone https://github.com/lshmouse/gitbook-demo.git
+cd gitbook-demo
+git checkout -b gh-pages
+</pre></div>
+</div>
+<p>清空旧数据，导入新数据:</p>
+<div class="highlight-python"><div class="highlight"><pre>git rm *
+cp -r ../../_books/* .
+git add .
+git commit -m &quot;pushlish to gh-pages&quot;
+</pre></div>
+</div>
+<p>将本地分支推送到远端</p>
+<div class="highlight-python"><div class="highlight"><pre>git push origin gh-pages
+cd ../../
+rm -rf .tmp
+</pre></div>
+</div>
+<p>还可以使用grunt,将上面任务自动化。参见:
+<a class="reference external" href="http://rorlab.gitbooks.io/rorla/contents/references/gitbook_deployment.html">http://rorlab.gitbooks.io/rorla/contents/references/gitbook_deployment.html</a></p>
+</div>
+<div class="section" id="id2">
+<h2>6.14.5. 参考<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>GitBook <a class="reference external" href="https://www.gitbook.io/">https://www.gitbook.io/</a></li>
+<li>GitBook code <a class="reference external" href="https://github.com/GitbookIO/gitbook">https://github.com/GitbookIO/gitbook</a></li>
+</ul>
 </div>
 </div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../algorithm/index.html" class="btn btn-neutral float-right" title="7. 算法竞赛">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="git-cmds.html" class="btn btn-neutral" title="6.13. Git 基本操作"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

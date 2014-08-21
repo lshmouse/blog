@@ -17,3 +17,4 @@
    dev-workflow
    maven-sphinx
    git-cmds
+   gitbook

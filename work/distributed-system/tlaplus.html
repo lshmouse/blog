@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>持续部署 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+  <title>2.12. TLA+ &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
   
 
   
@@ -28,7 +28,10 @@
   
 
   
-    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/> 
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/>
+        <link rel="up" title="2. 分布式系统" href="index.html"/>
+        <link rel="next" title="3. HBase实践" href="../hbase/index.html"/>
+        <link rel="prev" title="2.11. 实时存储系统设计文档" href="online-storage.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -57,7 +60,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">1. Linux系统</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux/arm.html">1.1. ARM芯片</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/learning-linux-kernel.html">1.2. 学习Linux内核</a></li>
@@ -66,19 +69,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux/linux-cmds.html">1.5. Linux常用命令</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../distributed-system/index.html">2. 分布式系统</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/papers.html">2.1. 分布式系统相关论文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/consistency-model.html">2.2. 一致性模型</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/NumbersEveryoneShouldKnown.html">2.3. Numbers Everyone Should Known from Dean 2009</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/roads.html">2.4. 技术道路</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/GFS-Notes.html">2.5. 类GFS的分布式文件系统实现要点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/MapReduce-Notes.html">2.6. MapReduce 框架实现的一些关键点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/BigTable-Notes.html">2.7. 类BigTable系统实现上的一些要点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/Wisdoms.html">2.8. IT智慧语录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/interesting-systems.html">2.9. 有趣的系统</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/weed-fs.html">2.10. weed-fs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/online-storage.html">2.11. 实时存储系统设计文档</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed-system/tlaplus.html">2.12. TLA+</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. 分布式系统</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="papers.html">2.1. 分布式系统相关论文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consistency-model.html">2.2. 一致性模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NumbersEveryoneShouldKnown.html">2.3. Numbers Everyone Should Known from Dean 2009</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roads.html">2.4. 技术道路</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GFS-Notes.html">2.5. 类GFS的分布式文件系统实现要点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MapReduce-Notes.html">2.6. MapReduce 框架实现的一些关键点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BigTable-Notes.html">2.7. 类BigTable系统实现上的一些要点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wisdoms.html">2.8. IT智慧语录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interesting-systems.html">2.9. 有趣的系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="weed-fs.html">2.10. weed-fs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="online-storage.html">2.11. 实时存储系统设计文档</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.12. TLA+</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hbase/index.html">3. HBase实践</a><ul>
@@ -111,21 +114,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../learnings/userful-links-1.html">5.15. 链接推荐1</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">6. 工具链</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="git.html">6.1. git</a></li>
-<li class="toctree-l2"><a class="reference internal" href="maven-plugins.html">6.2. Maven插件推荐</a></li>
-<li class="toctree-l2"><a class="reference internal" href="phabricator.html">6.3. phabricator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vagrant.html">6.4. vagrant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supervisord.html">6.5. supervisord</a></li>
-<li class="toctree-l2"><a class="reference internal" href="saltstack.html">6.6. saltstack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jekyll.html">6.7. jekyll</a></li>
-<li class="toctree-l2"><a class="reference internal" href="compile-jvm.html">6.8. JVM编译</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dev-tools.html">6.9. 开发工具大杂烩</a></li>
-<li class="toctree-l2"><a class="reference internal" href="good-apps.html">6.10. 好用的Apps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dev-workflow.html">6.11. 开发流程的探索</a></li>
-<li class="toctree-l2"><a class="reference internal" href="maven-sphinx.html">6.12. Maven sphinx 插件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git-cmds.html">6.13. Git 基本操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitbook.html">6.14. GitBook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../toolchains/index.html">6. 工具链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/git.html">6.1. git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/maven-plugins.html">6.2. Maven插件推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/phabricator.html">6.3. phabricator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/vagrant.html">6.4. vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/supervisord.html">6.5. supervisord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/saltstack.html">6.6. saltstack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/jekyll.html">6.7. jekyll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/compile-jvm.html">6.8. JVM编译</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/dev-tools.html">6.9. 开发工具大杂烩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/good-apps.html">6.10. 好用的Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/dev-workflow.html">6.11. 开发流程的探索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/maven-sphinx.html">6.12. Maven sphinx 插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/git-cmds.html">6.13. Git 基本操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolchains/gitbook.html">6.14. GitBook</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">7. 算法竞赛</a><ul>
@@ -171,10 +174,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>持续部署</li>
+          <li><a href="index.html">2. 分布式系统</a> &raquo;</li>
+      
+    <li>2.12. TLA+</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../../_sources/work/toolchains/deploy.txt" rel="nofollow"> View page source</a>
+          <a href="../../_sources/work/distributed-system/tlaplus.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -182,22 +187,78 @@
 </div>
           <div role="main">
             
-  <div class="section" id="id1">
-<h1>持续部署<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="quadron">
-<h2>quadron<a class="headerlink" href="#quadron" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.gosquadron.com/">http://www.gosquadron.com/</a></p>
-<p>这个工具很赞，稍后会写一个文章专门介绍</p>
+  <div class="section" id="tla">
+<h1>2.12. TLA+<a class="headerlink" href="#tla" title="Permalink to this headline">¶</a></h1>
+<p>开始关注TLA+, 是从Amazon的博文：formal-methods-amazon, 文章介绍Amazon的工程师使用TLA+描述Amazon内部的分布式系统
+S3, DynamoDB等，来验证原型的准确性，并找出原型上的bugs</p>
+<p>Specification是对一个系统模型的描述, 系统模型主要包含状态和转移两部分.
+TLA+就是一种描述Specification的语言， 以及对模型检测.</p>
+<div class="section" id="id1">
+<h2>2.12.1. 安装工具包<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>源代码：<a class="reference external" href="http://tlaplus.codeplex.com/">http://tlaplus.codeplex.com/</a></p>
+<p>下载https://tla.msr-inria.inria.fr/tlatoolbox/products/</p>
+<p>Ubuntu上启动:</p>
+<div class="highlight-python"><div class="highlight"><pre>#!/bin/bash
+export UBUNTU_MENUPROXY=0
+toolbox/toolbox
+</pre></div>
 </div>
-<div class="section" id="ansible">
-<h2>ansible<a class="headerlink" href="#ansible" title="Permalink to this headline">¶</a></h2>
-<p>see: <a class="reference external" href="http://www.ansible.com">http://www.ansible.com</a></p>
+</div>
+<div class="section" id="pluscal">
+<h2>2.12.2. PlusCal<a class="headerlink" href="#pluscal" title="Permalink to this headline">¶</a></h2>
+<p>+Cal是一种类似C语言的描述语言, TLA+ toolbox可以将+Cal写的程序转化为TLA+ 语言，然后进行模型检测。
+对程序员来说，+Cal更容易理解和使用。</p>
+</div>
+<div class="section" id="first-demo">
+<h2>2.12.3. First demo<a class="headerlink" href="#first-demo" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>::</dt>
+<dd><p class="first">VARIABLE b
+Init== (b=0) / (b=1)
+Next == / /b = 0</p>
+<blockquote class="last">
+<div><blockquote>
+<div>/b&#8217; = 1</div></blockquote>
+<dl class="docutils">
+<dt>/ /b = 1</dt>
+<dd>/b&#8217; = 0</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>Check 条件:</dt>
+<dd>b in {0, 1}</dd>
+</dl>
+<p>To be continued</p>
+</div>
+<div class="section" id="id2">
+<h2>2.12.4. 例子<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>raft protocal <a class="reference external" href="https://github.com/wayoutmind/melee/blob/master/docs/">https://github.com/wayoutmind/melee/blob/master/docs/</a></p>
+</div>
+<div class="section" id="id3">
+<h2>2.12.5. 参考<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>formal-methods-amazon <a class="reference external" href="http://research.microsoft.com/en-us/um/people/lamport/tla/formal-methods-amazon.pdf">http://research.microsoft.com/en-us/um/people/lamport/tla/formal-methods-amazon.pdf</a></li>
+<li><a class="reference external" href="http://tla2012.loria.fr/contributed/newcombe-slides.pdf">http://tla2012.loria.fr/contributed/newcombe-slides.pdf</a></li>
+<li>TLA home page <a class="reference external" href="http://research.microsoft.com/en-us/um/people/lamport/tla/tla.html">http://research.microsoft.com/en-us/um/people/lamport/tla/tla.html</a></li>
+<li>The TLA+ Hyperbook <a class="reference external" href="http://research.microsoft.com/en-us/um/people/lamport/tla/hyperbook.html">http://research.microsoft.com/en-us/um/people/lamport/tla/hyperbook.html</a></li>
+<li>TLA toolbox <a class="reference external" href="http://research.microsoft.com/en-us/um/people/lamport/tla/toolbox.html">http://research.microsoft.com/en-us/um/people/lamport/tla/toolbox.html</a></li>
+<li>PlusCal <a class="reference external" href="http://research.microsoft.com/en-us/um/people/lamport/tla/pluscal.html">http://research.microsoft.com/en-us/um/people/lamport/tla/pluscal.html</a></li>
+</ul>
 </div>
 </div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../hbase/index.html" class="btn btn-neutral float-right" title="3. HBase实践">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="online-storage.html" class="btn btn-neutral" title="2.11. 实时存储系统设计文档"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

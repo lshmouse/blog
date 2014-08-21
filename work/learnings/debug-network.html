@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.8. MegaStore &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+  <title>5.16. 调试网络问题 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   
     <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/>
         <link rel="up" title="5. 持续学习" href="index.html"/>
-        <link rel="next" title="5.9. Hadoop YARN" href="learning-yarn.html"/>
-        <link rel="prev" title="5.7. 学习Go语言" href="learning-golang.html"/> 
+        <link rel="next" title="6. 工具链" href="../toolchains/index.html"/>
+        <link rel="prev" title="5.15. 链接推荐1" href="userful-links.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -104,14 +104,15 @@
 <li class="toctree-l2"><a class="reference internal" href="learning-aws.html">5.5. 亚马逊云服务</a></li>
 <li class="toctree-l2"><a class="reference internal" href="learning-cassandra.html">5.6. Cansandra初探</a></li>
 <li class="toctree-l2"><a class="reference internal" href="learning-golang.html">5.7. 学习Go语言</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">5.8. MegaStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="learning-megastore.html">5.8. MegaStore</a></li>
 <li class="toctree-l2"><a class="reference internal" href="learning-yarn.html">5.9. Hadoop YARN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="learning-paxos.html">5.10. Paxos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nameservice.html">5.11. 名字服务</a></li>
 <li class="toctree-l2"><a class="reference internal" href="opencourse.html">5.12. 开发课程推荐</a></li>
 <li class="toctree-l2"><a class="reference internal" href="opensources.html">5.13. 有趣开源项目</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readinglist.html">5.14. Reading List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userful-links-1.html">5.15. 链接推荐1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userful-links.html">5.15. 链接推荐1</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.16. 调试网络问题</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../toolchains/index.html">6. 工具链</a><ul>
@@ -176,10 +177,10 @@
       
           <li><a href="index.html">5. 持续学习</a> &raquo;</li>
       
-    <li>5.8. MegaStore</li>
+    <li>5.16. 调试网络问题</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../../_sources/work/learnings/learning-megastore.txt" rel="nofollow"> View page source</a>
+          <a href="../../_sources/work/learnings/debug-network.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -187,49 +188,82 @@
 </div>
           <div role="main">
             
-  <div class="section" id="megastore">
-<h1>5.8. MegaStore<a class="headerlink" href="#megastore" title="Permalink to this headline">¶</a></h1>
-<p>今天组内大神分享了google MegaStore的设计,
-先把自己理解了部分记录下来，以后在对照论文，加深理解.</p>
-<p>MegaStore是google构建在bigtable之上跨数据中心，支持事务，支持sql的分布式数据库方案</p>
-<div class="section" id="id1">
-<h2>5.8.1. 基本架构<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>MegaStore library: MegaStore客户端库，方便用户使用megaStore Replication
-Manager: 与一个数据中心的BigTable对应，负责管理 Coordinator:
-负责本replica那些entry groups是最新。</p>
-<p>在Current Read时，对于当前写的Entry Group, 当前的Replica是最新的， Current
-Read就可以直接本地读。 如果不是最新的Current
-Read时候，需要Apply没有完成的事务日志，使得当前当前Replica达到最新。</p>
-<p>BigTable: 存储实际表的数据和事务日志</p>
-</div>
+  <div class="section" id="id1">
+<h1>5.16. 调试网络问题<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>5.8.2. 数据模型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>5.16.1. 背景<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>公司机房网络不稳定。最近一次因为机房两个交换机之间的一个链路有问题，导致特定tcp连接丢包。
+花了不少时间来确认是网络的问题。将这个定位过程中使用到工具记录下来，方便以后使用。</p>
 </div>
 <div class="section" id="id3">
-<h2>5.8.3. 写流程<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>发起一个Current Read, 获取当前操作日志的postion/timestamp</li>
-<li>发起一次paxos的写操作，将当前的操作日志写到BigTable上Enntry
-Group的Root Row的操作日志列上</li>
-<li>对于未正常返回的</li>
-<li>异步将当前操作写到bigtable的数据行上。</li>
-</ol>
+<h2>5.16.2. 本机网络问题<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>内核是否网络相关的异常</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dmesg</span>
+</pre></div>
+</div>
+<p>或者</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">vim</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">message</span>
+</pre></div>
+</div>
+<p>看是否网络相关的错误</p>
+<p>本机网卡被打满了? 可以直接iftop查看</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">iftop</span>
+</pre></div>
+</div>
+<p>iftop可以查看本地与其他机器之间当前的网络带宽。</p>
+<p>本机网卡是否有问题</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ifconfig</span>
+</pre></div>
+</div>
+<p>主要关注errors和dropped, 如有有网络可能不正常。</p>
 </div>
 <div class="section" id="id4">
-<h2>5.8.4. 读流程<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>5.16.3. 客户端与服务端问题<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>一般使用ping 检查客户端和服务端网络延时，是否有丢包现象</p>
+<div class="highlight-python"><div class="highlight"><pre>ping -c 30 server-ip -s 1448
+</pre></div>
+</div>
+<p>-c 指定ping的个数， -s指定包的大小</p>
+<p>另外需要注意的是: ping使用的ICMP(Internet Control Message Protocol), 不是TCP协议，有时候测试不出来基于TCP
+的连接上的问题。</p>
+<p>测试客户端和服务之间的网络带宽
+在服务端启动一个iperf服务</p>
+<div class="highlight-python"><div class="highlight"><pre>iperf -s -i 1 &amp;
+</pre></div>
+</div>
+<p>从客户端发起测试</p>
+<div class="highlight-python"><div class="highlight"><pre>iperf -c server-ip -i 1
+</pre></div>
+</div>
+<p>-s/c 标识服务端模式还是cient端 -i 为report周期, 默认使用的TCP协议</p>
+<p>如果以上工具都无法确认网络问题，只能用tcpdump抓包取分析</p>
+<div class="highlight-python"><div class="highlight"><pre>tcpdump -X -i eth0 host $ip and tcp port $port &gt; tcpdump.log
+</pre></div>
+</div>
+<p>在客户端和服务端分别抓包，然后对比客户端和服务端的包，分析问题。</p>
 </div>
 <div class="section" id="id5">
-<h2>5.8.5. 性能<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>单个Entry Group, 读写10ms， 写100-400ms， 取决于跨机房的延时。
-虽然单个Entry Group的写性能比较差，但是一个表可以分为非常多的Entry
-Group，如互联网业务中一个用户一个entry group。总的吞吐量是比较大。</p>
+<h2>5.16.4. 端口问题<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>有时候网络没有问题，当时具体端口访问有问题， 可能的原因就是本机一些iptable策略，或者网络上的端口限制等
+查看本机iptable策略</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">iptables</span> <span class="o">-</span><span class="n">L</span>
+</pre></div>
+</div>
+<p>网络策略需要找网络工程师去核对。</p>
 </div>
 <div class="section" id="id6">
-<h2>5.8.6. 参考<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://www.slideshare.net/schubertzhang/learning-from-google-megastore-part1-12149098">http://www.slideshare.net/schubertzhang/learning-from-google-megastore-part1-12149098</a></li>
-<li><a class="reference external" href="http://www.slideshare.net/arinto/megastore-providing-scalable-highly-available-storage-for-interactive-services-id2220-presentation">http://www.slideshare.net/arinto/megastore-providing-scalable-highly-available-storage-for-interactive-services-id2220-presentation</a></li>
-</ul>
+<h2>5.16.5. 模拟应用程序<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>有时候为了排除应用程序的bug, 可以在服务器端口上启动一个标准服务(eg: ftp, http等)，然后从客户端测试.
+如果标准服务正常，说明更大可能是程序的bug，如果不正常，至少说明网络有问题.</p>
+<p>简单的方法就是使用python 启动一个简单的http服务</p>
+<div class="highlight-python"><div class="highlight"><pre>python -m SimpleHTTPServer 8888
+</pre></div>
+</div>
+<p>从客户端拉去数据</p>
+<div class="highlight-python"><div class="highlight"><pre>wget http://${ip}:8888/
+</pre></div>
+</div>
+<p>注意测试时候需要分别测试数据上行和下行, 有时候小的数据量是测试不出问题的。</p>
 </div>
 </div>
 
@@ -239,10 +273,10 @@ Group，如互联网业务中一个用户一个entry group。总的吞吐量是�
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="learning-yarn.html" class="btn btn-neutral float-right" title="5.9. Hadoop YARN">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../toolchains/index.html" class="btn btn-neutral float-right" title="6. 工具链">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="learning-golang.html" class="btn btn-neutral" title="5.7. 学习Go语言"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="userful-links.html" class="btn btn-neutral" title="5.15. 链接推荐1"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
