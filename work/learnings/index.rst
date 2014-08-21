@@ -18,4 +18,5 @@
    opencourse
    opensources
    readinglist
-   userful-links-1
+   userful-links
+   debug-network
