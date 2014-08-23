@@ -50,7 +50,8 @@ Onging
 - Condition Write https://issues.apache.org/jira/browse/HBASE-11274
 - https://issues.apache.org/jira/browse/HBASE-11410
 - https://issues.apache.org/jira/browse/HBASE-11536
-
+- https://issues.apache.org/jira/browse/HBASE-11685
+- https://issues.apache.org/jira/browse/HBASE-11707
 Reported
 ---------------
 - https://issues.apache.org/jira/browse/HBASE-8937
