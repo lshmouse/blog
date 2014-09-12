@@ -21,3 +21,5 @@
 * `文件系统 XFS WIKI <http://xfs.org/index.php/Main_Page>`_
 * `Git内部实现原理 <http://git-scm.com/book/zh/Git-内部原理>`_
 * `HBaseCon <http://hbasecon.com/archive.html>`_
+* http://www.bitstech.net/category/存储/
+
