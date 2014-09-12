@@ -1,7 +1,7 @@
 提交的HBase Patches
 ====================
 Last Updated 2014-08-06
-Commited(21)
+Commited(23)
 -------------
 - https://issues.apache.org/jira/browse/HBASE-7258   
 - https://issues.apache.org/jira/browse/HBASE-7441
@@ -20,11 +20,16 @@ Commited(21)
 - https://issues.apache.org/jira/browse/HBASE-10846
 - https://issues.apache.org/jira/browse/HBASE-10881
 - https://issues.apache.org/jira/browse/HBASE-11218
+- https://issues.apache.org/jira/browse/HBASE-11232
 - https://issues.apache.org/jira/browse/HBASE-11240
 - https://issues.apache.org/jira/browse/HBASE-11255
 - https://issues.apache.org/jira/browse/HBASE-11373
+- https://issues.apache.org/jira/browse/HBASE-11536
 - https://issues.apache.org/jira/browse/HBASE-11541
 - https://issues.apache.org/jira/browse/HBASE-11648
+- https://issues.apache.org/jira/browse/HBASE-11868
+- https://issues.apache.org/jira/browse/HBASE-11869
+- https://issues.apache.org/jira/browse/HBASE-11877
 
 Onging
 ------------
@@ -44,14 +49,16 @@ Onging
 - https://issues.apache.org/jira/browse/HBASE-10943
 - https://issues.apache.org/jira/browse/HBASE-11095
 - https://issues.apache.org/jira/browse/HBASE-11115
-- https://issues.apache.org/jira/browse/HBASE-11232
 - https://issues.apache.org/jira/browse/HBASE-11223
 - https://issues.apache.org/jira/browse/HBASE-11263
 - Condition Write https://issues.apache.org/jira/browse/HBASE-11274
 - https://issues.apache.org/jira/browse/HBASE-11410
-- https://issues.apache.org/jira/browse/HBASE-11536
 - https://issues.apache.org/jira/browse/HBASE-11685
 - https://issues.apache.org/jira/browse/HBASE-11707
+- https://issues.apache.org/jira/browse/HBASE-11897
+- https://issues.apache.org/jira/browse/HBASE-11957
+- https://issues.apache.org/jira/browse/HBASE-11958
+
 Reported
 ---------------
 - https://issues.apache.org/jira/browse/HBASE-8937

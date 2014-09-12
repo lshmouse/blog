@@ -12,6 +12,7 @@
 
 其他
 ----------------
+* `内存管理 <http://www.memorymanagement.org/index.html>`_
 * `Sphinx写文档的例子 <http://pm.readthedocs.org/>`_
 * `分布式系统课程 <http://courses.engr.illinois.edu/cs525/>`_
 * `颜开的NoSQL数据库笔谈 <http://sebug.net/paper/databases/nosql/Nosql.html>`_
