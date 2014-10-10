@@ -111,7 +111,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../learnings/opencourse.html">5.12. 开发课程推荐</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../learnings/opensources.html">5.13. 有趣开源项目</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../learnings/readinglist.html">5.14. Reading List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../learnings/userful-links-1.html">5.15. 链接推荐1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/userful-links.html">5.15. 链接推荐1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/debug-network.html">5.16. 调试网络问题</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../toolchains/index.html">6. 工具链</a><ul>
@@ -145,7 +146,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../project.html">9. 参与的开源项目</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../project.html#vim">9.1. Vim配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../project.html#id2">9.2. 个人博客</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project.html#s3">9.3. 类S3对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../project.html#amazon-s3">9.3. 类Amazon S3的对象存储</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../project.html#id3">9.4. 基本算法和代码模板</a></li>
 </ul>
 </li>
@@ -189,33 +190,42 @@
             
   <div class="section" id="hbase-patches">
 <h1>3.4. 提交的HBase Patches<a class="headerlink" href="#hbase-patches" title="Permalink to this headline">¶</a></h1>
-<p>Last Updated 2014-08-06
-Commited(21)
-&#8212;&#8212;&#8212;&#8212;-
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7258">https://issues.apache.org/jira/browse/HBASE-7258</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7441">https://issues.apache.org/jira/browse/HBASE-7441</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8522">https://issues.apache.org/jira/browse/HBASE-8522</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8609">https://issues.apache.org/jira/browse/HBASE-8609</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8690">https://issues.apache.org/jira/browse/HBASE-8690</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-9892">https://issues.apache.org/jira/browse/HBASE-9892</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10048">https://issues.apache.org/jira/browse/HBASE-10048</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10049">https://issues.apache.org/jira/browse/HBASE-10049</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10370">https://issues.apache.org/jira/browse/HBASE-10370</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10335">https://issues.apache.org/jira/browse/HBASE-10335</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10377">https://issues.apache.org/jira/browse/HBASE-10377</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10583">https://issues.apache.org/jira/browse/HBASE-10583</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10627">https://issues.apache.org/jira/browse/HBASE-10627</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10692">https://issues.apache.org/jira/browse/HBASE-10692</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10846">https://issues.apache.org/jira/browse/HBASE-10846</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10881">https://issues.apache.org/jira/browse/HBASE-10881</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11218">https://issues.apache.org/jira/browse/HBASE-11218</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11240">https://issues.apache.org/jira/browse/HBASE-11240</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11255">https://issues.apache.org/jira/browse/HBASE-11255</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11373">https://issues.apache.org/jira/browse/HBASE-11373</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11541">https://issues.apache.org/jira/browse/HBASE-11541</a>
-- <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11648">https://issues.apache.org/jira/browse/HBASE-11648</a></p>
+<p>Last Updated 2014-08-06</p>
+<div class="section" id="commited-23">
+<h2>3.4.1. Commited(23)<a class="headerlink" href="#commited-23" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7258">https://issues.apache.org/jira/browse/HBASE-7258</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-7441">https://issues.apache.org/jira/browse/HBASE-7441</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8522">https://issues.apache.org/jira/browse/HBASE-8522</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8609">https://issues.apache.org/jira/browse/HBASE-8609</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8690">https://issues.apache.org/jira/browse/HBASE-8690</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-9892">https://issues.apache.org/jira/browse/HBASE-9892</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10048">https://issues.apache.org/jira/browse/HBASE-10048</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10049">https://issues.apache.org/jira/browse/HBASE-10049</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10370">https://issues.apache.org/jira/browse/HBASE-10370</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10335">https://issues.apache.org/jira/browse/HBASE-10335</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10377">https://issues.apache.org/jira/browse/HBASE-10377</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10583">https://issues.apache.org/jira/browse/HBASE-10583</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10627">https://issues.apache.org/jira/browse/HBASE-10627</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10692">https://issues.apache.org/jira/browse/HBASE-10692</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10846">https://issues.apache.org/jira/browse/HBASE-10846</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10881">https://issues.apache.org/jira/browse/HBASE-10881</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11218">https://issues.apache.org/jira/browse/HBASE-11218</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11232">https://issues.apache.org/jira/browse/HBASE-11232</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11240">https://issues.apache.org/jira/browse/HBASE-11240</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11255">https://issues.apache.org/jira/browse/HBASE-11255</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11373">https://issues.apache.org/jira/browse/HBASE-11373</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11536">https://issues.apache.org/jira/browse/HBASE-11536</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11541">https://issues.apache.org/jira/browse/HBASE-11541</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11648">https://issues.apache.org/jira/browse/HBASE-11648</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11868">https://issues.apache.org/jira/browse/HBASE-11868</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11869">https://issues.apache.org/jira/browse/HBASE-11869</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11877">https://issues.apache.org/jira/browse/HBASE-11877</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11957">https://issues.apache.org/jira/browse/HBASE-11957</a></li>
+</ul>
+</div>
 <div class="section" id="onging">
-<h2>3.4.1. Onging<a class="headerlink" href="#onging" title="Permalink to this headline">¶</a></h2>
+<h2>3.4.2. Onging<a class="headerlink" href="#onging" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-6136">https://issues.apache.org/jira/browse/HBASE-6136</a></li>
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8675">https://issues.apache.org/jira/browse/HBASE-8675</a></li>
@@ -233,18 +243,18 @@ Commited(21)
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-10943">https://issues.apache.org/jira/browse/HBASE-10943</a></li>
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11095">https://issues.apache.org/jira/browse/HBASE-11095</a></li>
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11115">https://issues.apache.org/jira/browse/HBASE-11115</a></li>
-<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11232">https://issues.apache.org/jira/browse/HBASE-11232</a></li>
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11223">https://issues.apache.org/jira/browse/HBASE-11223</a></li>
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11263">https://issues.apache.org/jira/browse/HBASE-11263</a></li>
 <li>Condition Write <a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11274">https://issues.apache.org/jira/browse/HBASE-11274</a></li>
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11410">https://issues.apache.org/jira/browse/HBASE-11410</a></li>
-<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11536">https://issues.apache.org/jira/browse/HBASE-11536</a></li>
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11685">https://issues.apache.org/jira/browse/HBASE-11685</a></li>
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11707">https://issues.apache.org/jira/browse/HBASE-11707</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11897">https://issues.apache.org/jira/browse/HBASE-11897</a></li>
+<li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-11958">https://issues.apache.org/jira/browse/HBASE-11958</a></li>
 </ul>
 </div>
 <div class="section" id="reported">
-<h2>3.4.2. Reported<a class="headerlink" href="#reported" title="Permalink to this headline">¶</a></h2>
+<h2>3.4.3. Reported<a class="headerlink" href="#reported" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="https://issues.apache.org/jira/browse/HBASE-8937">https://issues.apache.org/jira/browse/HBASE-8937</a></li>
 </ul>

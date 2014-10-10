@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.15. 链接推荐1 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
+  <title>HFile和HLog的回收机制 &mdash; Shaohui Liu&#39;s Blog 1.0.0 documentation</title>
   
 
   
@@ -28,10 +28,7 @@
   
 
   
-    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/>
-        <link rel="up" title="5. 持续学习" href="index.html"/>
-        <link rel="next" title="5.16. 调试网络问题" href="debug-network.html"/>
-        <link rel="prev" title="5.14. Reading List" href="readinglist.html"/> 
+    <link rel="top" title="Shaohui Liu&#39;s Blog 1.0.0 documentation" href="../../index.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -60,7 +57,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul class="current">
+            <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">1. Linux系统</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux/arm.html">1.1. ARM芯片</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/learning-linux-kernel.html">1.2. 学习Linux内核</a></li>
@@ -84,11 +81,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../distributed-system/tlaplus.html">2.12. TLA+</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../hbase/index.html">3. HBase实践</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../hbase/hbase_issues.html">3.1. Hbase 重要的issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hbase/how-to-learning-hadoop-hbase.html">3.2. How to learning Hadoop/HBase</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hbase/valuable_resources.html">3.3. HBase学习资源</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hbase/patches.html">3.4. 提交的HBase Patches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">3. HBase实践</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hbase_issues.html">3.1. Hbase 重要的issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to-learning-hadoop-hbase.html">3.2. How to learning Hadoop/HBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="valuable_resources.html">3.3. HBase学习资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patches.html">3.4. 提交的HBase Patches</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">4. Hadoop实践</a><ul>
@@ -96,23 +93,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/hdfs.html">4.2. HDFS</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. 持续学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tmux.html">5.1. tmux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linux-monitor-tools.html">5.2. Linxu系统监控工具</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning-HQueue.html">5.3. HQueue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning-LVM.html">5.4. LVM逻辑卷管理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning-aws.html">5.5. 亚马逊云服务</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning-cassandra.html">5.6. Cansandra初探</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning-golang.html">5.7. 学习Go语言</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning-megastore.html">5.8. MegaStore</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning-yarn.html">5.9. Hadoop YARN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning-paxos.html">5.10. Paxos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nameservice.html">5.11. 名字服务</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opencourse.html">5.12. 开发课程推荐</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opensources.html">5.13. 有趣开源项目</a></li>
-<li class="toctree-l2"><a class="reference internal" href="readinglist.html">5.14. Reading List</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">5.15. 链接推荐1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="debug-network.html">5.16. 调试网络问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learnings/index.html">5. 持续学习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/tmux.html">5.1. tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/linux-monitor-tools.html">5.2. Linxu系统监控工具</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-HQueue.html">5.3. HQueue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-LVM.html">5.4. LVM逻辑卷管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-aws.html">5.5. 亚马逊云服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-cassandra.html">5.6. Cansandra初探</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-golang.html">5.7. 学习Go语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-megastore.html">5.8. MegaStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-yarn.html">5.9. Hadoop YARN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/learning-paxos.html">5.10. Paxos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/nameservice.html">5.11. 名字服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/opencourse.html">5.12. 开发课程推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/opensources.html">5.13. 有趣开源项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/readinglist.html">5.14. Reading List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/userful-links.html">5.15. 链接推荐1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../learnings/debug-network.html">5.16. 调试网络问题</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../toolchains/index.html">6. 工具链</a><ul>
@@ -175,12 +172,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">5. 持续学习</a> &raquo;</li>
-      
-    <li>5.15. 链接推荐1</li>
+    <li>HFile和HLog的回收机制</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../../_sources/work/learnings/userful-links.txt" rel="nofollow"> View page source</a>
+          <a href="../../_sources/work/hbase/recycling-of-HFile-and-HLog.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -188,59 +183,48 @@
 </div>
           <div role="main">
             
-  <div class="section" id="id1">
-<h1>5.15. 链接推荐1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<ol class="arabic simple">
-<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-lxc-containers/#resources">介绍LinuxContainer和Cgroup文章：</a>
-主要用于轻量级的虚拟化，与虚拟机比较：资源利用率比较高，但是隔离效果没有虚拟机好，现在linux内核支持cpu和内存的隔离，可能还需要网络，和磁盘读写的隔离。</li>
-<li>关于GFS设计的一个访谈：<a class="reference external" href="http://queue.acm.org/detail.cfm?id=1594206">GFS: Evolution on
-Fast-forward</a>。从这篇访谈里面可以了解GFS的设计初衷，思路，以及面临的问题，GFS不是万能的，他也只是适合特定的场景。</li>
-<li>一个在线合作编辑的网站：<a class="reference external" href="http://collabedit.com/">http://collabedit.com/</a>。
-特点在于支持多种语言，并且有语法高亮，速度也不错，前段时间用于电话面试，效果还行。</li>
-<li><a class="reference external" href="http://dongxicheng.org/mapreduce/hadoop-terasort-analyse/">Hadoop中TeraSort算法分析</a>。讲的比较清晰，详细。但是要做到yahoo做的hadoop
-的teresort
-benchmark的62s，还是做了特殊的优化的，有想去可以搜索一下，对这些优化的理解可能进一步提高你对mapreduc框架的理解。最后是sort
-benchmark的网站，有兴趣看一看：<a class="reference external" href="http://sortbenchmark.org/">http://sortbenchmark.org/</a></li>
-<li>一个开源的codereview平台：<a class="reference external" href="http://code.google.com/p/rietveld/">rietveld</a>。
-我们team一直在用，对保证代码质量还是很有帮助的。另附：<a class="reference external" href="http://code.google.com/p/google-styleguide/">google-styleguide</a>
-因为开发c++多一些，对c++ google
-style还是很佩服的，里面的要求是很有道理的。对于c++，如果你不想看英文：推荐`http://code.google.com/p/zh-google-styleguide/ &lt;<a class="reference external" href="http://code.google.com/p/zh-google-styleguide/">http://code.google.com/p/zh-google-styleguide/</a>&gt;`_
-或者直接看这里：<a class="reference external" href="http://codinn.com/projects/google-cpp-styleguide/view/">http://codinn.com/projects/google-cpp-styleguide/view/</a>
-不仅将规范还将为什么，很佩服。</li>
-<li>编程基本操作的奇巧淫技
-：<a class="reference external" href="http://aggregate.ee.engr.uky.edu/MAGIC/">http://aggregate.ee.engr.uky.edu/MAGIC/</a>。
-比如说不用比较求两个数的最小值，
-快速判断一个数是否是2的幂，还是很有趣的。</li>
-<li>分布式操作系统condor：<a class="reference external" href="http://www.cs.wisc.edu/condor/">http://www.cs.wisc.edu/condor/</a>。
-我现在在用类似的一个系统，这个系统统一管理集群的cpu，内存，磁盘等等资源，按照作业需求分配，提供自动的调度和容错，虽然在一些问题如分布式debug，分布式测试等方面不是特别好，但是这将是一个大趋势，将大大提高机器资源的利用率（一般web2.0网站的机器利用率可能30%都不到），并且让开发者从机器上解放出来。</li>
-<li>Django book
-中文翻译：<a class="reference external" href="http://djangobook.py3k.cn/">http://djangobook.py3k.cn/</a>。
-一个很好的Django文档翻译，一直不喜欢做web，前段时间不得不做一个性能分析的展示页面,
-开始学习和使用Django，感觉很好，把web开发者从繁琐的设置中解脱出来。</li>
-<li>Hadoop
-mapreduce框架中文教程：<a class="reference external" href="http://hadoop.apache.org/common/docs/r0.20.0/cn/mapred_tutorial.html">http://hadoop.apache.org/common/docs/r0.20.0/cn/mapred_tutorial.html</a>。
-对hadoop
-mapreduce的介绍的很详细，很多细节只有你自己去开发之后才能领略到他设计的巧妙。当然如果对mapreduce不了解的话请先看`google的论文 &lt;<a class="reference external" href="http://static.googleusercontent.com/external_content/untrusted_dlcp/labs.google.com/en//papers/mapreduce-osdi04.pdf">http://static.googleusercontent.com/external_content/untrusted_dlcp/labs.google.com/en//papers/mapreduce-osdi04.pdf</a>&gt;`_.
-中文翻译也还好：<a class="reference external" href="http://blog.csdn.net/active1001/article/details/1675920">http://blog.csdn.net/active1001/article/details/1675920</a></li>
-<li>Buildbot
-一个开源持续集成平台：<a class="reference external" href="http://trac.buildbot.net/">http://trac.buildbot.net/</a>。
-Python写的，可扩展性比较强，chrome开发就是用的buildbot。持续集成可以减少开发者在运行测试上浪费的时间，通过自己配置，定期自动执行单元测试，集成测试以及回归测试等，保证项目可用性。appache开源了`hudson &lt;<a class="reference external" href="http://hudson-ci.org/">http://hudson-ci.org/</a>&gt;`_：,
-java写的公司内部在使用。</li>
-</ol>
+  <div class="section" id="hfilehlog">
+<h1>HFile和HLog的回收机制<a class="headerlink" href="#hfilehlog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>正常回收流程<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>HBase数据主要存储在分布式文件系统上HFile和HLog文件中。
+HBase数据基于LSM模型，写操作写到内存(MemStore)和Write Ahead Log(HLog)就返回。
+当内存不足或者MemStore超过一定大小的时候，HBase会将MemStore的数据顺序写到分布式文件系统上，形成一个HFile。
+当小的HFile过多的时候，会将多个小的HFile压缩形成一个大的HFile。
+压缩完成之后这些小的HFile就被移动archive目录下。</p>
+<p>如果HLog里所有记录对应的数据都已经刷新到HFile上，HLog就被RegionServer移动到.oldlog目录下。
+HMaster上的定时线程HFileCleaner/LogCleaner周期性扫描archive目录和.oldlog目录, 判断目录下的HFile或者HLog是否可以被删除，
+如果可以就直接删除文件。</p>
+</div>
+<div class="section" id="timetolive">
+<h2>TimeToLive<a class="headerlink" href="#timetolive" title="Permalink to this headline">¶</a></h2>
+<p>为了防止系统错误删除HFile/HLog, HFile/HLog都有一个全局的过期时间（TTL）, 超过这个过期时间的HFile/HLog才被删除.</p>
+</div>
+<div class="section" id="replication">
+<h2>Replication<a class="headerlink" href="#replication" title="Permalink to this headline">¶</a></h2>
+<p>HBase的Replication是通过将主集群的HLog推送到备集群，然后在备集群上重放实现的, 因此如果在oldlog目录下的HLog还在被Replication使用中，这些文件不能删除。
+HMaster上的ReplicationLogCleaner负责跟踪Replication正在使用那些HLog，如果检测到所有Replication都没有使用或者使用完了这个HLog文件，HLog文件就可以删除了。</p>
+</div>
+<div class="section" id="snapshot">
+<h2>SnapShot<a class="headerlink" href="#snapshot" title="Permalink to this headline">¶</a></h2>
+<p>Table的Snapshot只创建了一些HFile的引用，SnapshotFileCache负责跟踪那些HFile现在被某个Snapshot引用，
+HMaster上的HFileCleaner在尝试删除HFile时候会通过SnapshotHFileCleaner检查HFile是否被引用，如果被引用就不能删除。</p>
+</div>
+<div class="section" id="region-split">
+<h2>Region Split<a class="headerlink" href="#region-split" title="Permalink to this headline">¶</a></h2>
+<p>当Region大小超过一定阈值时，Region会自动分裂成两个子Region. Region Split执行时间是秒级别的.
+Split前父Region会预flush一次,然后关闭Region的写，最后做一次flush, 保证Region所有的数据都写到HFile中。
+Split时两个Region并不实际分割父Region的HFile，而是在子Region目录下生成一个HFile引用, 指向父Region实际的HFile文件，
+等到时候子Region Compaction时候才生产真实的HFile.
+父Region的HFile文件何时删除呢？HMaster上定时线程CatalogJanitor会周期性检查Meta表上的Region，是否是分裂后的父Region，
+并检查子Region是否还有到父Region的引用。直到子Region中所有引用HFile都被compaction回收之后，父Region的HFile就可以被回收，
+被移动到archive目录下。</p>
+</div>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="debug-network.html" class="btn btn-neutral float-right" title="5.16. 调试网络问题">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="readinglist.html" class="btn btn-neutral" title="5.14. Reading List"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
