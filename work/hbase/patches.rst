@@ -1,6 +1,7 @@
 提交的HBase Patches
 ====================
 Last Updated 2014-08-06
+
 Commited(23)
 -------------
 - https://issues.apache.org/jira/browse/HBASE-7258   
@@ -30,6 +31,7 @@ Commited(23)
 - https://issues.apache.org/jira/browse/HBASE-11868
 - https://issues.apache.org/jira/browse/HBASE-11869
 - https://issues.apache.org/jira/browse/HBASE-11877
+- https://issues.apache.org/jira/browse/HBASE-11957
 
 Onging
 ------------
@@ -56,7 +58,6 @@ Onging
 - https://issues.apache.org/jira/browse/HBASE-11685
 - https://issues.apache.org/jira/browse/HBASE-11707
 - https://issues.apache.org/jira/browse/HBASE-11897
-- https://issues.apache.org/jira/browse/HBASE-11957
 - https://issues.apache.org/jira/browse/HBASE-11958
 
 Reported

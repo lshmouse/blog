@@ -22,4 +22,4 @@
 * `Git内部实现原理 <http://git-scm.com/book/zh/Git-内部原理>`_
 * `HBaseCon <http://hbasecon.com/archive.html>`_
 * http://www.bitstech.net/category/存储/
-
+* `文件系统 http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_1.php`
