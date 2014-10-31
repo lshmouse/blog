@@ -9,6 +9,7 @@ Commited(23)
 - https://issues.apache.org/jira/browse/HBASE-8522
 - https://issues.apache.org/jira/browse/HBASE-8609
 - https://issues.apache.org/jira/browse/HBASE-8690
+- https://issues.apache.org/jira/browse/HBASE-8937
 - https://issues.apache.org/jira/browse/HBASE-9892
 - https://issues.apache.org/jira/browse/HBASE-10048
 - https://issues.apache.org/jira/browse/HBASE-10049
@@ -32,6 +33,10 @@ Commited(23)
 - https://issues.apache.org/jira/browse/HBASE-11869
 - https://issues.apache.org/jira/browse/HBASE-11877
 - https://issues.apache.org/jira/browse/HBASE-11957
+- https://issues.apache.org/jira/browse/HBASE-12241
+- https://issues.apache.org/jira/browse/HBASE-12263 
+- https://issues.apache.org/jira/browse/HBASE-12336
+- https://issues.apache.org/jira/browse/HBASE-12361
 
 Onging
 ------------
@@ -59,7 +64,3 @@ Onging
 - https://issues.apache.org/jira/browse/HBASE-11707
 - https://issues.apache.org/jira/browse/HBASE-11897
 - https://issues.apache.org/jira/browse/HBASE-11958
-
-Reported
----------------
-- https://issues.apache.org/jira/browse/HBASE-8937
