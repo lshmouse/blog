@@ -2,13 +2,14 @@
 ====================
 Last Updated 2014-08-06
 
-Commited(23)
+Commited(35)
 -------------
 - https://issues.apache.org/jira/browse/HBASE-7258   
 - https://issues.apache.org/jira/browse/HBASE-7441
 - https://issues.apache.org/jira/browse/HBASE-8522
 - https://issues.apache.org/jira/browse/HBASE-8609
 - https://issues.apache.org/jira/browse/HBASE-8690
+- https://issues.apache.org/jira/browse/HBASE-8707
 - https://issues.apache.org/jira/browse/HBASE-8937
 - https://issues.apache.org/jira/browse/HBASE-9892
 - https://issues.apache.org/jira/browse/HBASE-10048
@@ -16,6 +17,7 @@ Commited(23)
 - https://issues.apache.org/jira/browse/HBASE-10370
 - https://issues.apache.org/jira/browse/HBASE-10335
 - https://issues.apache.org/jira/browse/HBASE-10377
+- https://issues.apache.org/jira/browse/HBASE-10483
 - https://issues.apache.org/jira/browse/HBASE-10583
 - https://issues.apache.org/jira/browse/HBASE-10627
 - https://issues.apache.org/jira/browse/HBASE-10692
@@ -32,11 +34,18 @@ Commited(23)
 - https://issues.apache.org/jira/browse/HBASE-11868
 - https://issues.apache.org/jira/browse/HBASE-11869
 - https://issues.apache.org/jira/browse/HBASE-11877
+- https://issues.apache.org/jira/browse/HBASE-11897
 - https://issues.apache.org/jira/browse/HBASE-11957
 - https://issues.apache.org/jira/browse/HBASE-12241
 - https://issues.apache.org/jira/browse/HBASE-12263 
 - https://issues.apache.org/jira/browse/HBASE-12336
 - https://issues.apache.org/jira/browse/HBASE-12361
+- https://issues.apache.org/jira/browse/HBASE-12434
+
+Pending
+-----------
+- Condition Write https://issues.apache.org/jira/browse/HBASE-11274
+- https://issues.apache.org/jira/browse/HBASE-12451
 
 Onging
 ------------
@@ -51,16 +60,13 @@ Onging
 - https://issues.apache.org/jira/browse/HBASE-10054
 - https://issues.apache.org/jira/browse/HBASE-10055
 - https://issues.apache.org/jira/browse/HBASE-10081
-- API for master info port https://issues.apache.org/jira/browse/HBASE-10483
 - https://issues.apache.org/jira/browse/HBASE-10535
 - https://issues.apache.org/jira/browse/HBASE-10943
 - https://issues.apache.org/jira/browse/HBASE-11095
 - https://issues.apache.org/jira/browse/HBASE-11115
 - https://issues.apache.org/jira/browse/HBASE-11223
 - https://issues.apache.org/jira/browse/HBASE-11263
-- Condition Write https://issues.apache.org/jira/browse/HBASE-11274
 - https://issues.apache.org/jira/browse/HBASE-11410
 - https://issues.apache.org/jira/browse/HBASE-11685
 - https://issues.apache.org/jira/browse/HBASE-11707
-- https://issues.apache.org/jira/browse/HBASE-11897
 - https://issues.apache.org/jira/browse/HBASE-11958
