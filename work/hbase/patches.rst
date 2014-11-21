@@ -46,6 +46,9 @@ Pending
 -----------
 - Condition Write https://issues.apache.org/jira/browse/HBASE-11274
 - https://issues.apache.org/jira/browse/HBASE-12451
+- https://issues.apache.org/jira/browse/HBASE-12462
+- https://issues.apache.org/jira/browse/HBASE-12534
+- https://issues.apache.org/jira/browse/HBASE-12542
 
 Onging
 ------------
