@@ -1,9 +1,9 @@
 How to learning Hadoop/HBase
 ===========================================
 这是一篇给网友的回信。他看了我在China Hadop
-Summit上《小米Hbase实践》分享之后，来信咨询怎么学习Hadoop/Hbase?
+Summit上《小米Hbase实践》分享之后，来信咨询怎么学习Hadoop/HBase?
 
-从我自己的经历看, 学习Hadoop/Hbase步骤如下：
+从我自己的经历看, 学习Hadoop/HBase步骤如下：
 
 论文
 --------
@@ -13,10 +13,9 @@ google这三篇 论文来的。
 前三遍看得时候可能看不是很懂，只能有一个大概的认识。不要气馁，论文和后面的实践结合，才能慢慢琢磨出作者所要表达的意思。
 这三篇论文，过一段时间看一遍，都会有新的收获的
 
-Hadoop/Hbase书
+Hadoop/HBase书
 ---------------
-推荐<>, <>
-介绍Hadoop/Hbase具体实现和实践的书，熟悉Hadoop/Hbase一些大的实现方法和原理。
+推荐<<Hadoop: The Definitive Guide>>, <<HBase: The Definitive Guide>>, 介绍Hadoop/Hbase具体实现和实践的书，熟悉Hadoop/Hbase一些大的实现方法和原理。
 这两本书可以先看一遍，很多不了解，打上问号，在后面实践的时候，重新回过头来看，加深理解。这两本书也是需要看很多遍的。
 
 实践
@@ -32,12 +31,12 @@ Hadoop/Hbase书
 式，参与到社区开发里面。
 实践中遇到，看代码，找到问题，修复，然后提交社区，和社区沟通。
 
-Hadoop/Hbase 生态系统.
+Hadoop/HBase 生态系统.
 ----------------------
 Hadoop现在已经是大的生态的系统了，外围有很多系统如hive,
 sqoop等等，了解这些系统对在公司实施Hadoop/Hbase很有帮忙。
 
-Beyond Hadoop/Hbase.
+Beyond Hadoop/HBase.
 -----------------------
 在对Hadoop/Hbase很了解情况下，可以关注一些google这个体系之外的系统，比如Amazon
 Dynamo等，对比他们应用场景和系统设计的考虑，

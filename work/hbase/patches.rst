@@ -41,6 +41,8 @@ Commited(35)
 - https://issues.apache.org/jira/browse/HBASE-12336
 - https://issues.apache.org/jira/browse/HBASE-12361
 - https://issues.apache.org/jira/browse/HBASE-12434
+- https://issues.apache.org/jira/browse/HBASE-12635
+- https://issues.apache.org/jira/browse/HBASE-12636
 
 Pending
 -----------
@@ -49,6 +51,8 @@ Pending
 - https://issues.apache.org/jira/browse/HBASE-12462
 - https://issues.apache.org/jira/browse/HBASE-12534
 - https://issues.apache.org/jira/browse/HBASE-12542
+
+- https://issues.apache.org/jira/browse/HBASE-12641
 
 Onging
 ------------
