@@ -2,7 +2,7 @@
 ====================
 Last Updated 2014-08-06
 
-Commited(35)
+Commited(42)
 -------------
 - https://issues.apache.org/jira/browse/HBASE-7258   
 - https://issues.apache.org/jira/browse/HBASE-7441
@@ -43,6 +43,10 @@ Commited(35)
 - https://issues.apache.org/jira/browse/HBASE-12434
 - https://issues.apache.org/jira/browse/HBASE-12635
 - https://issues.apache.org/jira/browse/HBASE-12636
+- https://issues.apache.org/jira/browse/HBASE-12641
+- https://issues.apache.org/jira/browse/HBASE-12739
+- https://issues.apache.org/jira/browse/HBASE-12270
+- https://issues.apache.org/jira/browse/HBASE-12801
 
 Pending
 -----------
@@ -51,8 +55,6 @@ Pending
 - https://issues.apache.org/jira/browse/HBASE-12462
 - https://issues.apache.org/jira/browse/HBASE-12534
 - https://issues.apache.org/jira/browse/HBASE-12542
-
-- https://issues.apache.org/jira/browse/HBASE-12641
 
 Onging
 ------------
@@ -67,6 +69,7 @@ Onging
 - https://issues.apache.org/jira/browse/HBASE-10054
 - https://issues.apache.org/jira/browse/HBASE-10055
 - https://issues.apache.org/jira/browse/HBASE-10081
+
 - https://issues.apache.org/jira/browse/HBASE-10535
 - https://issues.apache.org/jira/browse/HBASE-10943
 - https://issues.apache.org/jira/browse/HBASE-11095
